@@ -3,6 +3,7 @@ const fs = require('fs');
 let coins = require("../coins.json")
 
 module.exports.run = async (bot, message, args) => {
+  if (message.member.roles.find(r => r.name === 'admin')){
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
   
   if(!coins[pUser.id]) {
@@ -27,6 +28,7 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("../coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)
   });
+}
 }
 module.exports.help = {
     name: "give"
