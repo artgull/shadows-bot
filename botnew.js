@@ -4,7 +4,6 @@ const bot = new discord.Client();
 const prefix = botconfig.prefix;
 const fs = require('fs');
 bot.commands = new discord.Collection();
-const exp = require('./functions/exp.js')
 const coins = require('./coins.json');
 
 fs.readdir('./frames/', (err, files) => {

@@ -1,5 +1,5 @@
 const Discord = module.require("discord.js");
-const lvl = require("../levels.json");
+const lvl = require("../coins.json");
 const fs = require('fs')
 
 module.exports.run = async (bot,message,args) => {

@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) => {
+    message.delete(1);
     let user = message.author.id;
     if(!coins[user]){
         coins[user] = {
