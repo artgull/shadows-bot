@@ -6,6 +6,18 @@ const fs = require('fs');
 bot.commands = new discord.Collection();
 const coins = require('./coins.json');
 
+const express = require('express');
+const keepalive = require('express-glitch-keepalive');
+const app = express();
+app.use(keepalive);
+app.get('/', (req, res) => {
+res.json('Бот запущен!');
+});
+app.get("/", (request, response) => {
+response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+
 fs.readdir('./frames/', (err, files) => {
     if (err) console.log(err);
     let jsfiles = files.filter(f => f.split(".").pop() === "js");

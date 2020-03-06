@@ -15,12 +15,12 @@ module.exports.run = async (bot, message, args) => {
     let coinEmbed = new Discord.RichEmbed()
     .setAuthor(message.author.username)
     .setColor("#000fff")
-    .addField("🤡", `${uCoins} клоунов`);
+    .addField("🤡", `${uCoins} кукурузок`);
 
     message.channel.send(coinEmbed);
 
 }
 
 module.exports.help = {
-    name: "манеты"
+    name: "баланс"
 }
