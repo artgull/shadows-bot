@@ -63,14 +63,30 @@ bot.on('message', async message => {
 
     if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     else {
-    let xpadd = Math.floor(Math.random() * 10) + 5;
-    let cashadd = Math.floor(Math.random() * 10) + 5;
 
-    if (message.member.roles.find(r => r.name === 'Бес')){
+    let defroles = "Тень" || "Для смены ника белым людям" || "Пиздюлина" || "Тень в отставке" || "Полутень" || "гостевой";
+    let xpadd;
+    let cashadd;
+
+    if (message.member.roles.find(r => r.name === defroles)) {
+        xpadd = Math.floor(Math.random() * 10) + 5;
+        cashadd = Math.floor(Math.random() * 10) + 5;
+    } else if(message.member.roles.find(r => r.name === 'Бес')) {
+        xpadd = Math.floor(Math.random() * 12) + 7;
+        cashadd = Math.floor(Math.random() * 12) + 7;
+    } else if(message.member.roles.find(r => r.name === 'Демон')) {
+        xpadd = Math.floor(Math.random() * 14) + 9;
+        cashadd = Math.floor(Math.random() * 14) + 9;
+    } else if(message.member.roles.find(r => r.name === 'Архонт' || 'Офицер')) {
+        xpadd = Math.floor(Math.random() * 16) + 11;
+        cashadd = Math.floor(Math.random() * 16) + 11;
+    }
+
+   /* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
-        cashadd = cashadd * 1.4;
-    }
+        cashadd = Math.floor(cashadd * 1.5);
+    }*/
 
     if(!coins[userid]) {
         coins[userid] = {
@@ -88,7 +104,7 @@ bot.on('message', async message => {
 
     if(nextlv <= exp) {
         coins[userid].level++;
-        message.author.send(`Вы лох, ваш уровень теперь - ${coins[userid].xp}`)
+        message.author.send(`Поздравляю! Вы повысили уровень до ${level}!`)
     } else {
         coins[userid].xp = exp + xpadd;
         coins[userid].coins = pocket + cashadd;

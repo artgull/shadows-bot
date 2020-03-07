@@ -19,11 +19,11 @@ module.exports.run = async (bot, message, args) => {
   let uxp = coins[pUser.id].xp
   
   coins[pUser.id] = {
-    level: ulvl,
+    level: +args[2],
     xp: uxp,
-    coins: pCoins + +args[2]
+    coins: pCoins 
   };
-  message.channel.send(`${message.author} выдано ${pUser} ${args[2]} душ.`);
+  message.channel.send(`${message.author} уровень ${args[2]} установлен ${pUser}.`);
   
   fs.writeFile("../coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)
@@ -31,5 +31,5 @@ module.exports.run = async (bot, message, args) => {
 }
 }
 module.exports.help = {
-    name: "givesouls"
+    name: "setlevel"
 }
