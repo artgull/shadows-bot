@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node botnew.js"
   },
+  "engines": {
+    "node": "12.8.1"
+  },
   "version": "1.2.9",
   "dependencies": {
     "discord.js": "^11.0.0",
