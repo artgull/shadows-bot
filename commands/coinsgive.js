@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
     xp: uxp,
     coins: pCoins + +args[2]
   };
-  message.channel.send(`${message.author} вiдано ${pUser} ${args[2]} кукурузок.`);
+  message.channel.send(`${message.author} выдано ${pUser} ${args[2]} душ.`);
   
   fs.writeFile("../coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)

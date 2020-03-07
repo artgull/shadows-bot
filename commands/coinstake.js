@@ -18,14 +18,14 @@ module.exports.run = async (bot, message, args) => {
   let ulvl = coins[pUser.id].level
   let uxp = coins[pUser.id].xp
 
-  if(pCoins < args[2]) return message.reply("")
+  if(pCoins < args[2]) return message.reply("На счету нет столько душ.")
   
   coins[pUser.id] = {
     level: ulvl,
     xp: uxp,
     coins: pCoins - +args[2]
   };
-  message.channel.send(`${message.author} изъял у ${pUser} ${args[2]} кукурузок.`);
+  message.channel.send(`${message.author} изъял у ${pUser} ${args[2]} душ(у).`);
   
   fs.writeFile("../coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)
