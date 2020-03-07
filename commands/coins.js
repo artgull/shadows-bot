@@ -6,6 +6,8 @@ module.exports.run = async (bot, message, args) => {
     let user = message.author.id;
     if(!coins[user]){
         coins[user] = {
+            level: 1,
+            xp: 0,
             coins: 0
         };
     }

@@ -61,10 +61,17 @@ bot.on('message', async message => {
     //if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     //else await exp(message.author)
 
+    function levelxpcoin() {
     if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     else {
-    let xpadd = Math.floor(Math.random() * 15) + 5;
-    let cashadd = Math.floor(Math.random() * 15) + 5;
+    let xpadd = Math.floor(Math.random() * 10) + 5;
+    let cashadd = Math.floor(Math.random() * 10) + 5;
+
+    if (message.member.roles.find(r => r.name === 'Бес')){
+        cashadd = cashadd * 1.25;
+    } else if (message.member.roles.find(r => r.name === 'Архонт')){
+        cashadd = cashadd * 1.4;
+    }
 
     if(!coins[userid]) {
         coins[userid] = {
@@ -80,7 +87,6 @@ bot.on('message', async message => {
     let exp = coins[userid].xp;
     let nextlv = level * 500;
 
-
     if(nextlv <= exp) {
         coins[userid].level++;
         message.author.send(`Вы лох, ваш уровень теперь - ${coins[userid].xp}`)
@@ -89,19 +95,25 @@ bot.on('message', async message => {
         coins[userid].coins = pocket + cashadd;
     }
 
+    
+
         fs.writeFile("coins.json", JSON.stringify(coins), (err) => {
             if (err) console.log(err)
         });
+        
+    
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
         .setColor("#000FFF")
-        .addField("🤡", `${coins[userid].coins} клоунов добавлено`);
+        .addField("🤡", `${coins[userid].xpadd} клоунов добавлено`);
 
         message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});*/
-
+    
     }
+} 
 
-
+setTimeout(levelxpcoin, 3000);
+    
 
 
 /*                НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
