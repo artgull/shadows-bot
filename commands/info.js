@@ -13,7 +13,7 @@ module.exports.run = async (bot,message,args) => {
     .addField("**Никнейм**", `${message.author.username}#${message.author.discriminator}`)
     .addField("**Уровень**", lvl[avtor].level)
     .addField("**Опыт**", `${lvl[avtor].xp}/${nextlv}`)
-    .addField("**Баланс**", `${lvl[avtor].coins} душ(а)`)
+    .addField("**Баланс**", `${lvl[avtor].coins} 👻`)
     message.channel.send(embed);
 
 }

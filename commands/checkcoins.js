@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     let coinEmbed = new Discord.RichEmbed()
     .setAuthor(message.author.username)
     .setColor("#4169e1")
-    .addField(`${pUser} имеет `, `${coins[pUser].coins} душ(а)`);
+    .addField(`${pUser} имеет `, `${coins[pUser].coins} 👻`);
 
     message.channel.send(coinEmbed);
 
