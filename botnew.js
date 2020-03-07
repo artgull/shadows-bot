@@ -61,14 +61,13 @@ bot.on('message', async message => {
     //if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     //else await exp(message.author)
 
-    function levelxpcoin() {
     if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     else {
     let xpadd = Math.floor(Math.random() * 10) + 5;
     let cashadd = Math.floor(Math.random() * 10) + 5;
 
     if (message.member.roles.find(r => r.name === 'Бес')){
-        cashadd = cashadd * 1.25;
+        cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = cashadd * 1.4;
     }
@@ -81,7 +80,7 @@ bot.on('message', async message => {
         };
     }
 
-    
+
     let level = coins[userid].level;
     let pocket = coins[userid].coins;
     let exp = coins[userid].xp;
@@ -93,6 +92,7 @@ bot.on('message', async message => {
     } else {
         coins[userid].xp = exp + xpadd;
         coins[userid].coins = pocket + cashadd;
+
     }
 
     
@@ -110,9 +110,6 @@ bot.on('message', async message => {
         message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});*/
     
     }
-} 
-
-setTimeout(levelxpcoin, 3000);
     
 
 
