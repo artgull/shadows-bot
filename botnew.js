@@ -92,12 +92,12 @@ bot.on('message', async message => {
         fs.writeFile("coins.json", JSON.stringify(coins), (err) => {
             if (err) console.log(err)
         });
-       /* let coinEmbed = new discord.RichEmbed()
+        let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
         .setColor("#000FFF")
         .addField("🤡", `${coins[userid].coins} клоунов добавлено`);
 
-        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});*/
+        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
 
     }
 
