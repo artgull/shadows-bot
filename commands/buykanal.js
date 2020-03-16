@@ -16,7 +16,7 @@ module.exports.run = (bot, message, args) => {
         if (args[1] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy-канал имя канала`");
         if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
         message.guild.createChannel(namech, 'voice').then(m => {
-            m.setParent(cat);
+            m.setParent(catneshad);
         })
         coins[author].coins = coins[author].coins - 1000000;
         message.reply(`Вы успешно купили канал **${namech}**!`);
