@@ -3,7 +3,8 @@ const fs = require('fs');
 let coins = require("../coins.json")
 
 module.exports.run = async (bot, message, args) => {
-  if (message.member.roles.find(r => r.name === 'admin')){
+  message.delete(1)
+  if (message.member.roles.find(r => r.name === 'admin' || 'Ылитные перцы')){
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
   
   if(!coins[pUser.id]) {
@@ -29,6 +30,7 @@ module.exports.run = async (bot, message, args) => {
     if(err) console.log(err)
   });
 }
+else return message.reply("Недостаточно прав для использования :upside_down:")
 }
 module.exports.help = {
     name: "givesouls"

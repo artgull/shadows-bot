@@ -15,9 +15,10 @@ module.exports.run = async (bot, message, args) => {
     let uCoins = coins[user].coins;
 
     let coinEmbed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}#${message.author.discriminator}`)
+    .setTitle(`${message.author.username}#${message.author.discriminator}`)
+    .setThumbnail(message.author.avatarURL)
     .setColor("#4169e1")
-    .setDescription(`${uCoins} 👻.`);
+    .addField("На счету",`${uCoins} 👻`);
 
     message.channel.send(coinEmbed);
 

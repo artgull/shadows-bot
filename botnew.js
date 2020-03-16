@@ -47,7 +47,6 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 bot.on('message', async message => {
-    if(message.guild.id === '291713993440231424') return;
     const args = message.content.slice(prefix.length).split(/ +/);
     let msg = message.content.toUpperCase();
     let user = message.author.username;

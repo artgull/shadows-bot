@@ -4,7 +4,7 @@ let coins = require("../coins.json");
 module.exports.run = async (bot, message, args) => {
     message.delete(1);
     let user = message.author.id;
-    let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
+    let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
     if(!coins[user]){
         coins[user] = {
             level: 1,
@@ -13,10 +13,12 @@ module.exports.run = async (bot, message, args) => {
         };
     }
 
+    let cash = coins[pUser.id].coins
+
     let coinEmbed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username},`)
+    .setTitle(`${pUser}`)
     .setColor("#4169e1")
-    .addField(`${pUser} имеет `, `${coins[pUser].coins} 👻`);
+    .addField(`${pUser.username} имеет `, `${cash} 👻`);
 
     message.channel.send(coinEmbed);
 
