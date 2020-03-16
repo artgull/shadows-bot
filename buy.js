@@ -10,7 +10,7 @@ module.exports.run = (bot, message, args) => {
     let namech = args[2];
     let rcheck = message.guild.member(author);
     message.delete(1);
-    if (args[1] === "гусь" || "Гусь") {
+    if (args[1] === 1) {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if(coins[author].coins < 50) return message.channel.send("Недостаточно душ для покупки");
         if (rcheck.roles.has('487921944767758336')) return message.channel.send(`У вас уже есть роль **Гусь**`);
@@ -19,7 +19,7 @@ module.exports.run = (bot, message, args) => {
         message.reply(`Вы успешно купили роль Гусь!`);
         return;
         
-    } if (!args[1] === "гусь" || "Гусь" && args[1] === "архонт" || "архонт") {
+    } if (args[1] === 2) {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if (coins[author].coins < 500) return message.channel.send("Недостаточно душ для покупки");
         if (rcheck.roles.has('487921687258595351')) return message.channel.send(`У вас уже есть роль **Архонт**`);
@@ -29,7 +29,7 @@ module.exports.run = (bot, message, args) => {
         
     }
     
-     if (args[1] === "канал" || "Уникальный голосовой канал") {
+     if (args[1] === 3) {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
         if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
