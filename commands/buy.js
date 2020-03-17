@@ -34,9 +34,9 @@ module.exports.run = async (bot, message, args) => {
     else if (args[1] === "канал") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
-        const msg = await message.channel.send("Введите название канала")
+        message.channel.send("Введите название канала")
         const filter = m => m.content.includes('discord');
-        const collected = await msg.channel.awaitMessages(filter, {
+        const collector = message.channel.createMessageCollector(filter, {
             time: 5000,
         }).catch(() => {
             message.channel.send('Время вышло');
