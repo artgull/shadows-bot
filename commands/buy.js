@@ -38,8 +38,6 @@ module.exports.run = async (bot, message, args) => {
         const filter = m => m.content.includes('discord');
         const collector = message.channel.createMessageCollector(filter, {
             time: 5000,
-        }).catch(() => {
-            message.channel.send('Время вышло');
         });
         
         collector.on('collect', m => {
