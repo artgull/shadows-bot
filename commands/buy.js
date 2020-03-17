@@ -34,13 +34,15 @@ module.exports.run = async (bot, message, args) => {
     else if (args[1] === "канал") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
-        message.channel.send("Введите название канала")
+        const msg = await message.channel.send("Введите название канала")
         const filter = m => m.content.includes('discord');
-        const collector = message.channel.createMessageCollector(filter, {
+        const collected = await msg.channel.awaitMessages(filter, {
             time: 5000,
+        }).catch(() => {
+            message.channel.send('Время вышло');
         });
         
-        collector.on('collect', m => {
+        collected.on('collect', m => {
             console.log(`Collected ${m.content}`);
         });
         if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
