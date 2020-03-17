@@ -35,21 +35,22 @@ module.exports.run = async (bot, message, args) => {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
         const msg = await message.channel.send("Введите название канала")
-        const filter = collected => collected.author.id === message.author.id;
+        const filter = m => m.content.includes('discord');
         const collected = await msg.channel.awaitMessages(filter, {
-            max: 1,
             time: 5000,
         }).catch(() => {
             message.channel.send('Время вышло');
         });
         
-        collected.first().content = namech;
+        collector.on('collect', m => {
+            console.log(`Collected ${m.content}`);
+        });
         if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
-        message.guild.createChannel(namech, 'voice').then(m => {
+        message.guild.createChannel(m.content, 'voice').then(m => {
             m.setParent(cat);
         })
         coins[author].coins = coins[author].coins - 1000000;
-        message.reply(`Вы успешно купили канал **${namech}**!`);
+        message.reply(`Вы успешно купили канал **${m.content}**!`);
     }
 }
 
