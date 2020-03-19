@@ -46,9 +46,7 @@ module.exports.run = async (bot, message, args) => {
             }
         });
         collector.on('end', collected => {
-            message.guild.createChannel(collected, 'voice').then(m => {
-                m.setParent(cat);
-            })
+            message.guild.createChannel(collected, 'voice')
         })
        /* if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
         message.guild.createChannel(m.content, 'voice').then(m => {
