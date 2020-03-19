@@ -34,23 +34,28 @@ module.exports.run = async (bot, message, args) => {
     else if (args[1] === "канал") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
-        const msg = await message.channel.send("Введите название канала")
-        const filter = m => m.content.includes('discord');
-        const collected = await msg.channel.awaitMessages(filter, {
-            time: 5000,
-        }).catch(() => {
-            message.channel.send('Время вышло');
+        message.channel.send("Введите название канала")
+        let counter = 0;
+        const filter = m => !m.author.bot;
+        const collector = new Discord.MessageCollector(message.channel, filter)
+        collector.on('collect', (message, cal) => {
+            console.log("Collected message: " + message.content);
+            counter++;
+            if(counter === 1) {
+                collector.stop()
+            }
         });
-        
-        collected.on('collect', m => {
-            console.log(`Collected ${m.content}`);
-        });
-        if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
+        collector.on('end', collected => {
+            message.guild.createChannel(collected, 'voice').then(m => {
+                m.setParent(cat);
+            })
+        })
+       /* if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
         message.guild.createChannel(m.content, 'voice').then(m => {
             m.setParent(cat);
         })
         coins[author].coins = coins[author].coins - 1000000;
-        message.reply(`Вы успешно купили канал **${m.content}**!`);
+        message.reply(`Вы успешно купили канал **${m.content}**!`);*/
     }
 }
 
