@@ -47,6 +47,7 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 bot.on('message', async message => {
+    if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
     let msg = message.content.toUpperCase();
     let user = message.author.username;

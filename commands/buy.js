@@ -6,9 +6,18 @@ const shoproles = fs.readFileSync('shoproles.json', 'utf8');
 module.exports.run = async (bot, message, args) => {
     let author = message.author.id;
     let cat = '435499299137257499';
+    let catnesah = '648511794926583808';
     let name = args[2];
     let namech //= args[2];
     let rcheck = message.guild.member(author);
+
+    if(!coins[author]){
+        coins[author] = {
+            level: 1,
+            xp: 0,
+            coins: 0
+        };
+    }
    
     message.delete(1);
     if (args[1] === "гусь") {
@@ -41,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
         let msg = await message.channel.awaitMessages(filter, {maxMatches: 1 , time: '15000', errors: ['time'] });
         let kanal = msg.first().content;
         message.guild.createChannel(kanal, 'voice').then(ma => {
-            ma.setParent(cat);
+            ma.setParent(catnesah);
             ma.lockPermissions();
         })
         coins[author].coins = coins[author].coins - 1000000;

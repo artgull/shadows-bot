@@ -3,6 +3,7 @@ const lvl = require("../coins.json");
 const fs = require('fs')
 
 module.exports.run = async (bot,message,args) => {
+  let klan = message.guild.members.get(message.author.id).nickname
     let avtor = message.author.id;
     if(!lvl[avtor]) {
         lvl[avtor] = {
@@ -19,7 +20,7 @@ module.exports.run = async (bot,message,args) => {
     .setTitle("**Статистика**")
     .setColor("#4169e1")
     .setThumbnail(message.author.avatarURL)
-    .addField("**Никнейм**", `${message.author.username}#${message.author.discriminator}`)
+    .addField("**Никнейм**", klan)
     .addField("**Уровень**", `${lvl[avtor].level}`)
     .addField("**Опыт**", `${lvl[avtor].xp}/${nextlv}`)
     .addField("**Баланс**", `${lvl[avtor].coins} 👻`)
