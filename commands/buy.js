@@ -34,21 +34,23 @@ module.exports.run = async (bot, message, args) => {
     else if (args[1] === "канал") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
+        if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
         message.channel.send("Введите название канала")
-        let counter = 0;
-        const filter = m => !m.author.bot;
-        const collector = new Discord.MessageCollector(message.channel, filter)
-        collector.on('collect', (message, cal) => {
-            console.log("Collected message: " + message.content);
-            counter++;
-            if(counter === 1) {
-                collector.stop()
-            }
-        });
-        collector.on('end', collected => {
-            message.guild.createChannel(collected, 'voice')
+        let filter = m => m.author.id === message.author.id;
+        try {
+        let msg = await message.channel.awaitMessages(filter, {maxMatches: 1 , time: '15000', errors: ['time'] });
+        let kanal = msg.first().content;
+        message.guild.createChannel(kanal, 'voice').then(ma => {
+            ma.setParent(cat);
+            ma.lockPermissions();
         })
-       /* if(coins[author].coins < 1000000) return message.channel.send("Недостаточно душ для покупки");
+        coins[author].coins = coins[author].coins - 1000000;
+        message.reply(`Вы успешно купили канал **${kanal}**!`);
+        }
+        catch(ex) {
+            message.channel.send("Вы должны указать название в течении 15 секунд. Попробуйте еще раз.")
+        }
+       /*
         message.guild.createChannel(m.content, 'voice').then(m => {
             m.setParent(cat);
         })
