@@ -4,7 +4,6 @@ let coins = require("../coins.json");
 module.exports.run = async (bot, message, args) => {
     message.delete(1);
     let klan = message.guild.members.get(message.author.id).nickname
-    console.log(klan)
     let user = message.author.id;
     if(!coins[user]){
         coins[user] = {

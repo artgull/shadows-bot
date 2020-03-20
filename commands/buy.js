@@ -30,13 +30,13 @@ module.exports.run = async (bot, message, args) => {
         return;
         
     }
-    else if (args[1] === "архонт") {
+    else if (args[1] === "демон") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if (coins[author].coins < 500) return message.channel.send("Недостаточно душ для покупки");
         if (rcheck.roles.has('487921687258595351')) return message.channel.send(`У вас уже есть роль **Архонт**`);
         message.guild.members.get(author).addRole(message.guild.roles.find("name", "Архонт"));
         coins[author].coins = coins[author].coins - 500;
-        message.reply(`Вы успешно купили роль **Архонт**!`);
+        message.reply(`Вы успешно купили роль **Демон**!`);
         
      }
     
