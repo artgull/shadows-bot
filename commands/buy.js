@@ -4,6 +4,7 @@ const fs = require('fs')
 const shoproles = fs.readFileSync('shoproles.json', 'utf8');
 
 module.exports.run = async (bot, message, args) => {
+    message.delete(1);
     let author = message.author.id;
     let cat = '435499299137257499';
     let catnesah = '648511794926583808';
@@ -18,8 +19,7 @@ module.exports.run = async (bot, message, args) => {
             coins: 0
         };
     }
-   
-    message.delete(1);
+
     if (args[1] === "гусь") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if(coins[author].coins < 50) return message.channel.send("Недостаточно душ для покупки");

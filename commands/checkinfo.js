@@ -3,6 +3,7 @@ const lvl = require("../coins.json");
 const fs = require('fs')
 
 module.exports.run = async (bot,message,args) => {
+    message.delete(1)
     let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
     let userav = message.mentions.users.first().avatarURL
     if(!lvl[pUser.id]) {
@@ -15,7 +16,7 @@ module.exports.run = async (bot,message,args) => {
 
     
     let nextlv = lvl[pUser.id].level * 500;
-    message.delete(1)
+   
     if(args[1] === undefined) return message.reply("Не указано имя")
     const embed = new Discord.RichEmbed()
     .setTitle("**Статистика**")

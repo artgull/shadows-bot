@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 const fs = require('fs');
 let coins = require("../coins.json")
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args) => {   
+  message.delete(1);
     if (message.member.roles.find(r => r.name === 'admin' || 'Ылитные перцы')){
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
   
