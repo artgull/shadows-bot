@@ -1,4 +1,5 @@
 ﻿const discord = require('discord.js');
+const mongoose = require("mongoose");
 const botconfig = require("./botconfig.json");
 const bot = new discord.Client();
 const prefix = botconfig.prefix;
@@ -17,6 +18,12 @@ app.get("/", (request, response) => {
 response.sendStatus(200);
 });
 app.listen(process.env.PORT);
+
+mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+});
+const Stat = require("./models/stats.js");
 
 fs.readdir('./frames/', (err, files) => {
     if (err) console.log(err);
@@ -44,6 +51,11 @@ fs.readdir('./commands/', (err, files) => {
         bot.commands.set(props.help.name, props);
         
     });
+});
+
+bot.on('guildMemberAdd', member => {
+    let avtor = member.id
+    avtor.message.send("Ты лох воняющий")
 });
 
 bot.on('message', async message => {
@@ -81,43 +93,39 @@ bot.on('message', async message => {
         xpadd = Math.floor(Math.random() * 16) + 11;
         cashadd = Math.floor(Math.random() * 16) + 11;
     }
-
-   /* if (message.member.roles.find(r => r.name === 'Бес')){
+    console.log(xpadd + "xp", cashadd + "cash");
+/* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = Math.floor(cashadd * 1.5);
     }*/
 
-    if(!coins[userid]) {
-        coins[userid] = {
-            level: 1,
-            xp: 0,
-            coins: 0
-        };
-    }
-
-
-    let level = coins[userid].level;
-    let pocket = coins[userid].coins;
-    let exp = coins[userid].xp;
-    let nextlv = level * 500;
-
-    if(nextlv <= exp) {
-        coins[userid].level++;
-        message.author.send(`Поздравляю! Вы повысили уровень до ${level}!`)
-    } else {
-        coins[userid].xp = exp + xpadd;
-        coins[userid].coins = pocket + cashadd;
-
-    }
-
-    
-
-        fs.writeFile("coins.json", JSON.stringify(coins), (err) => {
-            if (err) console.log(err)
-        });
+    Stat.findOne({
+        userID: message.author.id
         
-    
+    }, (err, stat) => {
+        if(err) console.log(err);
+        if(!stat) {
+            const newStat = new Stat({
+                userID: message.author.id,
+                userguildName: message.guild.members.get(message.author.id).nickname,
+                guildid: message.guild.id,
+                userName: message.author.tag,
+                level: 1,
+                xp: xpadd,
+                money: cashadd
+
+            })
+            newStat.save().catch(err => console.log(err));
+        }
+
+    else {
+        nextlvl = stat.level * 500;
+        if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Вы повысили уровень до ${stat.level}!`) }
+        stat.money = stat.money + cashadd;
+        stat.xp = stat.xp + xpadd;
+        stat.save().catch(err => console.log(err));
+    }
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
         .setColor("#000FFF")
@@ -125,9 +133,9 @@ bot.on('message', async message => {
 
         message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});*/
     
-    }
+    })
     
-
+    }
 
 /*                НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
                   НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
