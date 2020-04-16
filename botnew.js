@@ -78,7 +78,7 @@ bot.on('message', async message => {
 
     let xpadd;
     let cashadd;
-
+    function stata() {
      if(message.member.roles.find(r => r.name === 'Бес')) {
         xpadd = Math.floor(Math.random() * 12) + 7;
         cashadd = Math.floor(Math.random() * 12) + 7;
@@ -93,6 +93,8 @@ bot.on('message', async message => {
         cashadd = Math.floor(Math.random() * 10) + 5;
         console.log(xpadd + "xp", cashadd + "cash");
     }
+}
+setTimeout(stata, 5000);
 /* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
@@ -120,12 +122,10 @@ bot.on('message', async message => {
 
     else {
         nextlvl = stat.level * 500;
-        function stata() {
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Вы повысили уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
         stat.save().catch(err => console.log(err));
-        }
         setTimeout(stata, 5000);
     }
        /* let coinEmbed = new discord.RichEmbed()
