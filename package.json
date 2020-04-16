@@ -15,7 +15,8 @@
     "express": "^4.17.1",
     "express-glitch-keepalive": "^0.2.0",
     "mongodb": "^3.5.5",
-    "mongoose": "^5.9.9"
+    "mongoose": "^5.9.9",
+    "random-puppy": "^1.1.0"
   },
   "is-music-bot": false
 }

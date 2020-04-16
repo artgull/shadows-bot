@@ -23,12 +23,18 @@ module.exports.run = async (bot, message, args) => {
     } else if(res.length < 5) {
         for(i = 0; i < res.length; i++) {
             let member = message.guild.members.get(res[i].userID)
-            leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`);
+            if (member.nickname === null) {
+                leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
+            } else
+            leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
         }
     } else {
         for(i = 0; i < 5; i++) {
             let member = message.guild.members.get(res[i].userID)
-            leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`);
+            if (member.nickname === null) {
+                leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
+            } else
+            leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
         }
     }
     message.channel.send(leadembed);

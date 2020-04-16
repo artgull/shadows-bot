@@ -76,14 +76,10 @@ bot.on('message', async message => {
     if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     else {
 
-    let defroles = "Тень" || "Для смены ника белым людям" || "Пиздюлина" || "Тень в отставке" || "Полутень" || "гостевой";
     let xpadd;
     let cashadd;
 
-    if (message.member.roles.find(r => r.name === defroles)) {
-        xpadd = Math.floor(Math.random() * 10) + 5;
-        cashadd = Math.floor(Math.random() * 10) + 5;
-    } else if(message.member.roles.find(r => r.name === 'Бес')) {
+     if(message.member.roles.find(r => r.name === 'Бес')) {
         xpadd = Math.floor(Math.random() * 12) + 7;
         cashadd = Math.floor(Math.random() * 12) + 7;
     } else if(message.member.roles.find(r => r.name === 'Демон')) {
@@ -92,8 +88,11 @@ bot.on('message', async message => {
     } else if(message.member.roles.find(r => r.name === 'Архонт' || 'Офицер')) {
         xpadd = Math.floor(Math.random() * 16) + 11;
         cashadd = Math.floor(Math.random() * 16) + 11;
+    } else { 
+        xpadd = Math.floor(Math.random() * 10) + 5;
+        cashadd = Math.floor(Math.random() * 10) + 5;
+        console.log(xpadd + "xp", cashadd + "cash");
     }
-    console.log(xpadd + "xp", cashadd + "cash");
 /* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
@@ -121,10 +120,13 @@ bot.on('message', async message => {
 
     else {
         nextlvl = stat.level * 500;
+        function stata() {
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Вы повысили уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
         stat.save().catch(err => console.log(err));
+        }
+        setTimeout(stata, 5000);
     }
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
