@@ -126,7 +126,6 @@ setTimeout(stata, 5000);
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
         stat.save().catch(err => console.log(err));
-        setTimeout(stata, 5000);
     }
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
