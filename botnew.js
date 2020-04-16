@@ -55,7 +55,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('guildMemberAdd', member => {
     let avtor = member.id
-    avtor.message.send("Ты лох воняющий")
+    member.user.message.send("Ты лох воняющий")
 });
 
 bot.on('message', async message => {
@@ -78,7 +78,7 @@ bot.on('message', async message => {
 
     let xpadd;
     let cashadd;
-    function stata() {
+  
      if(message.member.roles.find(r => r.name === 'Бес')) {
         xpadd = Math.floor(Math.random() * 12) + 7;
         cashadd = Math.floor(Math.random() * 12) + 7;
@@ -93,8 +93,7 @@ bot.on('message', async message => {
         cashadd = Math.floor(Math.random() * 10) + 5;
         console.log(xpadd + "xp", cashadd + "cash");
     }
-}
-setTimeout(stata, 5000);
+
 /* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
