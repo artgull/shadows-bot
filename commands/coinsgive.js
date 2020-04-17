@@ -24,7 +24,8 @@ module.exports.run = async (bot, message, args) => {
             userName: pUser.displayName,
             level: 1,
             xp: 0,
-            money: 0
+            money: 0,
+            msgs: 0
 
         })
         if(err) console.log(err);

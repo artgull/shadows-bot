@@ -9,8 +9,48 @@ const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot,message,args) => {
   message.delete(1);
+  let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
   let klan = message.guild.members.get(message.author.id).nickname
-    let avtor = message.author.id;
+  
+  
+  let avtor = message.author.id;
+    
+      
+  
+  if(args[1] !== undefined) {
+  Stat.findOne({
+    userID: pUser.id
+  }, (err, stat) => {
+    if(err) console.log(err);
+    if(!stat) {
+        const newStat = new Stat({
+            userID: pUser.id,
+            userguildName: message.guild.members.get(pUser.id).nickname,
+            guildid: message.guild.id,
+            userName: pUser.displayName,
+            level: 1,
+            xp: 0,
+            money: 0,
+            msgs: 0
+
+        })
+        if(err) console.log(err);
+        newStat.save().catch(err => console.log(err));  
+      } 
+        let nextlv = stat.level * 500;    
+        let userav = message.mentions.users.first().avatarURL
+  const embed = new Discord.RichEmbed()
+  .setTitle("**Статистика**")
+  .setColor("#4169e1")
+  .setThumbnail(userav)
+  .addField("**Никнейм**", pUser.displayName)
+  .addField("**Уровень**", `${stat.level}`)
+  .addField("**Опыт**", `${stat.xp}/${nextlv}`)
+  .addField("**Баланс**", `${stat.money} 👻`)
+  message.channel.send(embed);
+      
+    })
+  } else {
     Stat.findOne({
       userID: avtor
   }, (err, stat) => {
@@ -28,10 +68,9 @@ module.exports.run = async (bot,message,args) => {
           })
           if(err) console.log(err);
           newStat.save().catch(err => console.log(err));
-      } else {
-
-    
-    let nextlv = stat.level * 500;
+        }
+         
+          let nextlv = stat.level * 500;
     const embed = new Discord.RichEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")
@@ -41,8 +80,10 @@ module.exports.run = async (bot,message,args) => {
     .addField("**Опыт**", `${stat.xp}/${nextlv}`)
     .addField("**Баланс**", `${stat.money} 👻`)
     message.channel.send(embed);
-      }
+    
+        
     })
+}
 }
 module.exports.help = {
     name: "инфо"

@@ -28,8 +28,9 @@ module.exports.run = async (bot, message, args) => {
                 guildid: message.guild.id,
                 userguildName: message.guild.members.get(message.author.id).nickname,
                 level: 1,
-                xp: xpadd,
-                money: cashadd
+                xp: 0,
+                money: 0,
+                msgs: 0,
 
             })
             newStat.save().catch(err => console.log(err));

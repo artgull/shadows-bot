@@ -6,6 +6,7 @@ const statSchema = mongoose.Schema({
     guildid: String,
     level: Number,
     xp: Number,
-    money: Number
+    money: Number,
+    msgs: Number
 })
 module.exports = mongoose.model("Data", statSchema);
