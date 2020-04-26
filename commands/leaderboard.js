@@ -111,6 +111,39 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(leadembed);
           })
     }
+    else if(args[1] === "войс") {
+        Stat.find({
+            guildid: message.guild.id
+          }).sort([
+            ['voicetime', 'descending']
+          ]).exec((err, res) => {
+            if (err) console.log(err);
+    
+        let leadembed = new Discord.RichEmbed()
+        .setTitle("Таблица лидеров по времени в голосовых каналах(не считая AFK)")
+        .setColor("#4169e1")
+        if(res.length === 0) {
+            leadembed.setDescription("Пусто.")
+        } else if(res.length < 5) {
+            for(i = 0; i < res.length; i++) {
+                let member = message.guild.members.get(res[i].userID)
+                if (member.nickname === null) {
+                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicetime}`, true);
+                } else
+                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicetime}`, true);
+            }
+        } else {
+            for(i = 0; i < 5; i++) {
+                let member = message.guild.members.get(res[i].userID)
+                if (member.nickname === null) {
+                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicetime}`, true);
+                } else
+                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicetime}`, true);
+            }
+        }
+        message.channel.send(leadembed);
+          })
+    }
 
 
     else return message.reply("Не указан тип таблицы");
