@@ -61,8 +61,8 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
     let cUser
-    if(newStateChannel.id === '690192044643188748') return 
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
+        if(newStateChannel.id === '690192044643188748') return 
         cUser = newState.id
         
          let xpadd = 30;
