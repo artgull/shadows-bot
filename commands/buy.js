@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const fs = require('fs')
-const shoproles = fs.readFileSync('shoproles.json', 'utf8');
 mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data', {
     useNewUrlParser: true,
     useUnifiedTopology: true 
@@ -31,31 +30,38 @@ module.exports.run = async (bot, message, args) => {
                 xp: 0,
                 money: 0,
                 msgs: 0,
+                voicetime: 0
 
             })
             newStat.save().catch(err => console.log(err));
         } else {
 
-    if (args[1] === "гусь") {
+    if (args[1] === "роль") {
+        let colorarr = ['#00FFDD', '#7F81FF', '#E86894', '#F0FFA9', '#FF739B', '#FFCE97', '#FF6CFF', '#EBFCCD', '#C0F8FF', '#E8CACE', '#BAA780', '#919CB3'];
+        let random = Math.floor(Math.random() * colorarr.length);
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
-        if(stat.money < 50) return message.channel.send("Недостаточно душ для покупки");
-        if (rcheck.roles.has('487921944767758336')) return message.channel.send(`У вас уже есть роль **Гусь**`);
-        message.guild.members.get(author).addRole(message.guild.roles.find("name", "Гусь"));
-        stat.money = stat.money - 50;
-        message.reply(`Вы успешно купили роль **Гусь**!`);
-        stat.save().catch(err => console.log(err));
-        return;
+        if(stat.money < 1000000) return message.channel.send("Недостаточно душ для покупки");
+        message.channel.send("Введите название роли")
+        let filter = m => m.author.id === message.author.id;
+        try {
+        message.channel.awaitMessages(filter, {max: 1, time: '15000', errors: ['time'] }).then(collected => {
+            
+            message.member.guild.createRole({
+                name: collected.first().content,
+                color: colorarr[random]
+            })
+        })
+        let memberrole = message.member.guild.roles.find("name", collected.first().content)
+        message.member.addRole(memberrole)
+        stat.money = stat.money - 1000000;
+        stat.save().catch(err => console.log(err));    
+        message.reply(`Вы успешно купили роль ${memberrole}`)
+        return
+        }
+        catch(ex) {message.channel.send("Время вышло, попробуйте еще раз.")}
+        
         
     }
-    else if (args[1] === "демон") {
-        if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
-        if (stat.money < 500) return message.channel.send("Недостаточно душ для покупки");
-        if (rcheck.roles.has('487921687258595351')) return message.channel.send(`У вас уже есть роль **Архонт**`);
-        message.guild.members.get(author).addRole(message.guild.roles.find("name", "Архонт"));
-        stat.money = stat.money - 500;
-        message.reply(`Вы успешно купили роль **Демон**!`);
-        stat.save().catch(err => console.log(err));
-     }
     
     else if (args[1] === "канал") {
         if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
@@ -75,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
         message.reply(`Вы успешно купили канал **${kanal}**!`);
         }
         catch(ex) {
-            message.channel.send("Вы должны указать название в течении 15 секунд. Попробуйте еще раз.")
+            message.channel.send("Время вышло, попробуйте еще раз.")
         }
        /*
         message.guild.createChannel(m.content, 'voice').then(m => {

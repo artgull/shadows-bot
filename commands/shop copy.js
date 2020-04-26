@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const mongoose = require("mongoose");
 
 module.exports.run = async (bot, message, args) => {
     message.delete(1);
@@ -23,5 +24,5 @@ module.exports.run = async (bot, message, args) => {
 
 }
 module.exports.help = {
-    name: "магазин"
+    name: "магазин1"
 }

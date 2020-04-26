@@ -7,6 +7,7 @@ const statSchema = mongoose.Schema({
     level: Number,
     xp: Number,
     money: Number,
-    msgs: Number
+    msgs: Number,
+    voicetime: Number
 })
 module.exports = mongoose.model("Data", statSchema);

@@ -31,13 +31,14 @@ module.exports.run = async (bot,message,args) => {
             level: 1,
             xp: 0,
             money: 0,
-            msgs: 0
+            msgs: 0,
+            voicetime: 0
 
         })
         if(err) console.log(err);
         newStat.save().catch(err => console.log(err));  
       } 
-        let nextlv = stat.level * 500;    
+        let nextlv = stat.level * 1000;    
         let userav = message.mentions.users.first().avatarURL
   const embed = new Discord.RichEmbed()
   .setTitle("**Статистика**")
@@ -63,14 +64,16 @@ module.exports.run = async (bot,message,args) => {
               userName: message.author.tag,
               level: 1,
               xp: 0,
-              money: 0
+              money: 0,
+              msgs: 0,
+              voicetime: 0
 
           })
           if(err) console.log(err);
           newStat.save().catch(err => console.log(err));
         }
          
-          let nextlv = stat.level * 500;
+          let nextlv = stat.level * 1000;
     const embed = new Discord.RichEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")

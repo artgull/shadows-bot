@@ -5,7 +5,6 @@ const bot = new discord.Client();
 const prefix = botconfig.prefix;
 const fs = require('fs');
 bot.commands = new discord.Collection();
-const coins = require('./coins.json');
 
 const express = require('express');
 const keepalive = require('express-glitch-keepalive');
@@ -53,11 +52,43 @@ fs.readdir('./commands/', (err, files) => {
     });
 });
 
-bot.on('guildMemberAdd', member => {
-    let avtor = member.id
-    member.user.message.send("Ты лох воняющий")
+bot.on('guildMemberAdd', function(member)  {
+    var helper = fs.readFileSync('./welcome.txt', 'utf-8');
+    member.send(helper)
 });
-
+bot.on('voiceStateUpdate', async (oldState, newState) => {
+    function voicer() {
+    let oldStateChannel = oldState.voiceChannel
+    let newStateChannel = newState.voiceChannel
+    let cUser
+    if(newStateChannel.id === '690192044643188748') return 
+    if(oldStateChannel === undefined && newStateChannel !== undefined) {
+        cUser = newState.id
+        
+         let xpadd = 30;
+         let cashadd = 30;
+  
+        Stat.findOne({
+            userID: newState.id
+            
+        }, (err, stat) => {
+            if(err) console.log(err);
+            
+            else {
+            nextlvl = stat.level * 1000;
+            if(stat.xp >= nextlvl) stat.level++;
+            stat.money = stat.money + cashadd;
+            stat.xp = stat.xp + xpadd;
+            
+            stat.save().catch(err => console.log(err));
+            }
+    }
+        )
+    }
+    console.log(cUser)
+    }
+    setInterval(voicer, 5000)
+})
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -114,19 +145,21 @@ bot.on('message', async message => {
                 level: 1,
                 xp: xpadd,
                 money: cashadd,
-                msgs: 1
+                msgs: 1,
+                voicetime: 0
 
             })
             newStat.save().catch(err => console.log(err));
         }
 
     else {
-        nextlvl = stat.level * 500;
+        nextlvl = stat.level * 1000;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Вы повысили уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
         stat.msgs++;
         stat.save().catch(err => console.log(err));
+
     }
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
