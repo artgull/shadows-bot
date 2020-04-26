@@ -79,7 +79,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
             if(stat.xp >= nextlvl) stat.level++;
             stat.money = stat.money + cashadd;
             stat.xp = stat.xp + xpadd;
-            
+            stat.voicetime = stat.voicetime + 5;
             stat.save().catch(err => console.log(err));
             }
     }
