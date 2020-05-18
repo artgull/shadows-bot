@@ -56,7 +56,7 @@ bot.on('guildMemberAdd', function(member)  {
     var helper = fs.readFileSync('./welcome.txt', 'utf-8');
     member.send(helper)
 });
-/*bot.on('voiceStateUpdate', async (oldState, newState) => {
+bot.on('voiceStateUpdate', async (oldState, newState) => {
     function voicer() {
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
@@ -144,11 +144,11 @@ bot.on('message', async message => {
 
     
     
-/* if (message.member.roles.find(r => r.name === 'Бес')){
+ /*if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = Math.floor(cashadd * 1.5);
-    } // тут было окончание
+    } */
     
     Stat.findOne({
         userID: message.author.id
@@ -191,7 +191,7 @@ bot.on('message', async message => {
         .setColor("#000FFF")
         .addField("🤡", `${coins[userid].xpadd} клоунов добавлено`);
 
-        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); // тут было окончание
+        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); */
     
     })
     
@@ -238,11 +238,11 @@ bot.on('message', async message => {
         if(collected.first().content === '1') return message.author.send('https://imgur.com/8eZ9Dtk');
         message.author.send('Done !');
             }
-        }); // тут было окончание
+        }); */
         
     
 });
-  */ 
+  
 /*bot.on('message', async message => {
     let message.author = message.author;
     if(message.content === prefix + "apply"){
@@ -257,8 +257,8 @@ const collected = await msg.channel.awaitMessages(filter, {
 if(collected.first().content === '1') return message.author.send('https://imgur.com/8eZ9Dtk');
 message.author.send('Done !');
     }
-});
-*/
+});*/ 
+
 
 
 bot.on('ready', () => {
