@@ -119,7 +119,7 @@ bot.on('message', async message => {
     //if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     //else await exp(message.author)
 
-    if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
+ /*   if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
     else {
         
         let xpadd;
@@ -148,7 +148,7 @@ bot.on('message', async message => {
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = Math.floor(cashadd * 1.5);
-    } */
+    } //тут было окончание
     
     Stat.findOne({
         userID: message.author.id
@@ -191,7 +191,7 @@ bot.on('message', async message => {
         .setColor("#000FFF")
         .addField("🤡", `${coins[userid].xpadd} клоунов добавлено`);
 
-        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); */
+        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); //тут было кончание
     
     })
     
@@ -238,9 +238,9 @@ bot.on('message', async message => {
         if(collected.first().content === '1') return message.author.send('https://imgur.com/8eZ9Dtk');
         message.author.send('Done !');
             }
-        }); */
-        
-    
+        }); // тут было окончание
+        */
+
 });
   
 /*bot.on('message', async message => {
