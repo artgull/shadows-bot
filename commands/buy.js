@@ -7,10 +7,13 @@ mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data'
 });
 const Stat = require("../models/stats.js");
 module.exports.run = async (bot, message, args) => {
+    
+    
     message.delete(1);
     let author = message.author.id;
     let cat = '435499299137257499';
     let catnesah = '648511794926583808';
+    let catshad = '362214199465607170';
     let name = args[2];
     let namech //= args[2];
     let rcheck = message.guild.member(author);
@@ -30,47 +33,51 @@ module.exports.run = async (bot, message, args) => {
                 xp: 0,
                 money: 0,
                 msgs: 0,
-                voicetime: 0
+                voicetime: 0,
+                voicehours: 0,
+                voiceall: 0
 
             })
             newStat.save().catch(err => console.log(err));
         } else {
+            if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
 
-    if (args[1] === "роль") {
+         if (args[1] === "роль" || "Роль") {
         let colorarr = ['#00FFDD', '#7F81FF', '#E86894', '#F0FFA9', '#FF739B', '#FFCE97', '#FF6CFF', '#EBFCCD', '#C0F8FF', '#E8CACE', '#BAA780', '#919CB3'];
         let random = Math.floor(Math.random() * colorarr.length);
-        if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
         if(stat.money < 1000000) return message.channel.send("Недостаточно душ для покупки");
-        message.channel.send("Введите название роли")
+        message.channel.send("Введи название роли в течении 1 минуты.")
         let filter = m => m.author.id === message.author.id;
-        try {
-        message.channel.awaitMessages(filter, {max: 1, time: '15000', errors: ['time'] }).then(collected => {
-            
+        
+        message.channel.awaitMessages(filter, {max: 1, time: 60000, errors: ['time'] }).then((collected) => {
+            let rname = collected.first().content
             message.member.guild.createRole({
-                name: collected.first().content,
-                color: colorarr[random]
+                name: rname,
+                color: colorarr[random],
+                permissions: 0
             })
+            
+            let memberrole = message.member.guild.roles.find(r => r.name == rname)
+            console.log(memberrole)
+            console.log(rname)
+            message.member.addRole(memberrole.id)
+            stat.money = stat.money - 1000000;
+            stat.save().catch(err => console.log(err));    
+            message.reply(`Ты успешно купил роль ${rname}`)
+
+            fs.appendFileSync("../log.txt", `[${message.createdTimestamp}] ${message.author.id} купил ${memberrole}`)
         })
-        let memberrole = message.member.guild.roles.find("name", collected.first().content)
-        message.member.addRole(memberrole)
-        stat.money = stat.money - 1000000;
-        stat.save().catch(err => console.log(err));    
-        message.reply(`Вы успешно купили роль ${memberrole}`)
-        return
-        }
-        catch(ex) {message.channel.send("Время вышло, попробуйте еще раз.")}
-        
-        
+            
+  
     }
     
-    else if (args[1] === "канал") {
-        if (args[1] === undefined) return message.channel.send("Не указано название товара. Правильное использование `-buy название товара`");
-        //if (args[2] === undefined) return message.channel.send("Не указано название канала. Правильное использование `-buy канал имя канала`");
+    else if (args[1] === "канал" || "Канал") {
         if(stat.money < 1000000) return message.channel.send("Недостаточно душ для покупки");
-        message.channel.send("Введите название канала")
+        message.channel.send("Введи название канала")
         let filter = m => m.author.id === message.author.id;
-        try {
-        let msg = message.channel.awaitMessages(filter, {maxMatches: 1 , time: '15000', errors: ['time'] });
+        
+        let msg = message.channel.awaitMessages(filter, {max: 1 , time: 15000, errors: ['time']}).then(collected => {
+
         let kanal = msg.first().content;
         message.guild.createChannel(kanal, 'voice').then(ma => {
             ma.setParent(catnesah);
@@ -78,11 +85,18 @@ module.exports.run = async (bot, message, args) => {
         })
         stat.money = stat.money - 1000000;
         stat.save().catch(err => console.log(err));
-        message.reply(`Вы успешно купили канал **${kanal}**!`);
+        message.reply(`Ты успешно купил канал **${kanal}**!`);
+        try {
+            fs.appendFileSync("../log.txt", `[${message.createdTimestamp}] ${message.author.id} купил ${memberrole}`)
         }
-        catch(ex) {
-            message.channel.send("Время вышло, попробуйте еще раз.")
+        catch(err) {
+            console.log(err)
         }
+    }).catch(() => {
+        message.channel.send("Время вышло, попробуй еще раз.")
+    })
+        
+        
        /*
         message.guild.createChannel(m.content, 'voice').then(m => {
             m.setParent(cat);
@@ -94,6 +108,7 @@ module.exports.run = async (bot, message, args) => {
         }
     })
 }
+
 
 module.exports.help = {
     name: "buy"

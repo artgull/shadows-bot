@@ -9,7 +9,7 @@ const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {
   message.delete(1);
-  if (message.member.roles.has('435764899369713664' || '648464327636156416')) {
+  if (message.member.roles.has('435764899369713664' || '648464327636156416'|| '291716681137520641' || '377124665673383937' || '646629514385817601' || '291714963721027584')) {
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
   Stat.findOne({
     userID: pUser.id
@@ -25,19 +25,27 @@ module.exports.run = async (bot, message, args) => {
             xp: 0,
             money: 0,
             msgs: 0,
-            voicetime: 0
+            voicetime: 0,
+            voicehours: 0,
+            voiceall: 0
 
         })
         if(err) console.log(err);
         newStat.save().catch(err => console.log(err));
     } else {
   
-  if((stat.xp + +args[2]) > (stat.level * 500)) return message.reply("ты не можешь выдать больше опыта чем позволяет уровень.") 
+  if((stat.xp + +args[2]) > (stat.level * 500)) return message.reply("Ты не можешь выдать больше опыта чем позволяет уровень.") 
   else {
     stat.xp = stat.xp + +args[2];
     stat.save().catch(err => console.log(err));
 }
   message.channel.send(`${message.author} выдано ${pUser} ${args[2]} опыта.`);
+  try {
+    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.get(message.author.id).nickname}) выдал ${pUser.id}(${pUser.displayName}) ${args[2]} опыта`, 'utf-8')
+}
+catch(err) {
+    console.log(err)
+}
 }
 })
 }

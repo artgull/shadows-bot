@@ -10,6 +10,6 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(embed);
 
 }
-module.exports.help = {
+/*module.exports.help = {
     name: "48678486486484"
-}
+}*/

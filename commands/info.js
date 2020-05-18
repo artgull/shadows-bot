@@ -32,7 +32,9 @@ module.exports.run = async (bot,message,args) => {
             xp: 0,
             money: 0,
             msgs: 0,
-            voicetime: 0
+            voicetime: 0,
+            voicehours: 0,
+            voiceall: 0
 
         })
         if(err) console.log(err);
@@ -48,7 +50,15 @@ module.exports.run = async (bot,message,args) => {
   .addField("**Уровень**", `${stat.level}`)
   .addField("**Опыт**", `${stat.xp}/${nextlv}`)
   .addField("**Баланс**", `${stat.money} 👻`)
+  .addField("**Сообщения", `${stat.msgs}`, true)
+  .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
   message.channel.send(embed);
+  try {
+    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.get(message.author.id).nickname}) проверил статистику ${pUser.id}(${pUser.displayName})`, 'utf-8')
+}
+catch(err) {
+    console.log(err)
+}
       
     })
   } else {
@@ -66,7 +76,9 @@ module.exports.run = async (bot,message,args) => {
               xp: 0,
               money: 0,
               msgs: 0,
-              voicetime: 0
+              voicetime: 0,
+              voicehours: 0,
+              voiceall: 0
 
           })
           if(err) console.log(err);
@@ -81,7 +93,9 @@ module.exports.run = async (bot,message,args) => {
     .addField("**Никнейм**", klan)
     .addField("**Уровень**", `${stat.level}`)
     .addField("**Опыт**", `${stat.xp}/${nextlv}`)
-    .addField("**Баланс**", `${stat.money} 👻`)
+    .addField("**Баланс**", `${stat.money} 👻`,true)
+    .addField("**Сообщения**", `${stat.msgs}`, true)
+    .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
     message.channel.send(embed);
     
         

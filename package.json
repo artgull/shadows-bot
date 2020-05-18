@@ -1,6 +1,6 @@
 {
   "name": "Discord-Bot-xXxSHADOWSxXx",
-  "author": "Me)",
+  "author": "artgull#0244, GreenP0st#6105",
   "main": "botnew.js",
   "scripts": {
     "start": "node botnew.js"

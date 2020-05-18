@@ -56,7 +56,7 @@ bot.on('guildMemberAdd', function(member)  {
     var helper = fs.readFileSync('./welcome.txt', 'utf-8');
     member.send(helper)
 });
-bot.on('voiceStateUpdate', async (oldState, newState) => {
+/*bot.on('voiceStateUpdate', async (oldState, newState) => {
     function voicer() {
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
@@ -79,7 +79,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
             if(stat.xp >= nextlvl) stat.level++;
             stat.money = stat.money + cashadd;
             stat.xp = stat.xp + xpadd;
-            stat.voicetime = stat.voicetime + 3;
+            
             stat.save().catch(err => console.log(err));
             }
     }
@@ -87,6 +87,22 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     }
     }
     setInterval(voicer, 180000)
+    function voicetimer() {
+        Stat.findOne({
+            userID: newState.id
+            
+        }, (err, stat) => {
+            if(err) console.log(err);
+        stat.voicetime = stat.voicetime + 1;
+        stat.voiceall = stat.voiceall + 1;
+        if(stat.voicetime === 60) {
+            stat.voicehours++;
+            stat.voicetime = 0;
+        }
+        stat.save().catch(err => console.log(err));
+    })
+    }
+    setInterval(voicetimer, 60000)
 })
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
@@ -103,33 +119,37 @@ bot.on('message', async message => {
     //if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     //else await exp(message.author)
 
-    if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
+    if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
     else {
-
-    let xpadd;
-    let cashadd;
-  
+        
+        let xpadd;
+        let cashadd;
+        
+    
+    
      if(message.member.roles.find(r => r.name === 'Бес')) {
-        xpadd = Math.floor(Math.random() * 12) + 7;
-        cashadd = Math.floor(Math.random() * 12) + 7;
+        xpadd = Math.floor(Math.random() * 22) + 17;
+        cashadd = Math.floor(Math.random() * 22) + 17;
     } else if(message.member.roles.find(r => r.name === 'Демон')) {
-        xpadd = Math.floor(Math.random() * 14) + 9;
-        cashadd = Math.floor(Math.random() * 14) + 9;
-    } else if(message.member.roles.find(r => r.name === 'Архонт' || 'Офицер')) {
-        xpadd = Math.floor(Math.random() * 16) + 11;
-        cashadd = Math.floor(Math.random() * 16) + 11;
+        xpadd = Math.floor(Math.random() * 24) + 19;
+        cashadd = Math.floor(Math.random() * 24) + 19;
+    } else if(message.member.roles.find(r => r.name === 'Архонт' || 'Офицер' || 'Офицер в отставке' || 'Старший офицер' || 'Зам лидера' || 'Админ')) {
+        xpadd = Math.floor(Math.random() * 26) + 21;
+        cashadd = Math.floor(Math.random() * 26) + 21;
     } else { 
-        xpadd = Math.floor(Math.random() * 10) + 5;
-        cashadd = Math.floor(Math.random() * 10) + 5;
-        console.log(xpadd + "xp", cashadd + "cash");
+        xpadd = Math.floor(Math.random() * 20) + 10;
+        cashadd = Math.floor(Math.random() * 20) + 10;
+        
     }
 
+    
+    
 /* if (message.member.roles.find(r => r.name === 'Бес')){
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = Math.floor(cashadd * 1.5);
-    }*/
-
+    } // тут было окончание
+    
     Stat.findOne({
         userID: message.author.id
         
@@ -145,32 +165,40 @@ bot.on('message', async message => {
                 xp: xpadd,
                 money: cashadd,
                 msgs: 1,
-                voicetime: 0
+                voicetime: 0,
+                voicehours: 0,
+                voiceall: 0
 
             })
             newStat.save().catch(err => console.log(err));
         }
 
     else {
+       
         nextlvl = stat.level * 1000;
-        if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Вы повысили уровень до ${stat.level}!`) }
+        if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
         stat.msgs++;
         stat.save().catch(err => console.log(err));
 
+    
+        
     }
+
        /* let coinEmbed = new discord.RichEmbed()
         .setAuthor(message.author.username)
         .setColor("#000FFF")
         .addField("🤡", `${coins[userid].xpadd} клоунов добавлено`);
 
-        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});*/
+        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); // тут было окончание
     
     })
     
-    }
+    
 
+
+    }
 /*                НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
                   НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
                   НИЖЕ НИЧЕГО НЕ ТРОГАТЬ!!!
@@ -210,11 +238,11 @@ bot.on('message', async message => {
         if(collected.first().content === '1') return message.author.send('https://imgur.com/8eZ9Dtk');
         message.author.send('Done !');
             }
-        });*/
+        }); // тут было окончание
         
     
 });
-   
+  */ 
 /*bot.on('message', async message => {
     let message.author = message.author;
     if(message.content === prefix + "apply"){
@@ -235,7 +263,7 @@ message.author.send('Done !');
 
 bot.on('ready', () => {
     console.log('Bot ready');
-    bot.user.setPresence({game:{name: '-помощь для просмотра команд', type: 2}});
+   // bot.user.setPresence({game:{name: '-помощь для просмотра команд', type: 2}});
 });
 
 bot.login(botconfig.token);

@@ -115,7 +115,7 @@ module.exports.run = async (bot, message, args) => {
         Stat.find({
             guildid: message.guild.id
           }).sort([
-            ['voicetime', 'descending']
+            ['voiceall', 'descending']
           ]).exec((err, res) => {
             if (err) console.log(err);
     
@@ -128,17 +128,17 @@ module.exports.run = async (bot, message, args) => {
             for(i = 0; i < res.length; i++) {
                 let member = message.guild.members.get(res[i].userID)
                 if (member.nickname === null) {
-                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicetime}`, true);
+                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
                 } else
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicetime}`, true);
+                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
             }
         } else {
             for(i = 0; i < 5; i++) {
                 let member = message.guild.members.get(res[i].userID)
                 if (member.nickname === null) {
-                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicetime}`, true);
+                    leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
                 } else
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicetime}`, true);
+                leadembed.addField(`${i+1}. ${member.nickname}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
             }
         }
         message.channel.send(leadembed);
