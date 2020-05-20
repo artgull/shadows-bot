@@ -56,7 +56,7 @@ bot.on('guildMemberAdd', function(member)  {
     var helper = fs.readFileSync('./welcome.txt', 'utf-8');
     member.send(helper)
 });
-bot.on('voiceStateUpdate', async (oldState, newState) => {
+/*bot.on('voiceStateUpdate', async (oldState, newState) => {
     function voicer() {
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
@@ -103,7 +103,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     })
     }
     setInterval(voicetimer, 60000)
-})
+})*/
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
