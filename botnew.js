@@ -57,22 +57,41 @@ bot.on('guildMemberAdd', function(member)  {
     member.send(helper)
 });
 /*bot.on('voiceStateUpdate', async (oldState, newState) => {
+    let cUser = newState.id
+            
+    let xpadd = 30;
+    let cashadd = 30;
+
     function voicer() {
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
-    let cUser
+    
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
         if(newStateChannel.id === '690192044643188748') return 
-        cUser = newState.id
-        
-         let xpadd = 30;
-         let cashadd = 30;
+
   
         Stat.findOne({
             userID: newState.id
             
         }, (err, stat) => {
             if(err) console.log(err);
+            if(!stat) {
+            const newStat = new Stat({
+                userID: cUser,
+                userguildName: newState.guild.members.get(cUser.id).nickname,
+                guildid: newState.guild.id,
+                userName: cUser.tag,
+                level: 1,
+                xp: xpadd,
+                money: cashadd,
+                msgs: 0,
+                voicetime: 0,
+                voicehours: 0,
+                voiceall: 0
+
+            })
+            newStat.save().catch(err => console.log(err));
+        }
             
             else {
             nextlvl = stat.level * 1000;
@@ -93,6 +112,24 @@ bot.on('guildMemberAdd', function(member)  {
             
         }, (err, stat) => {
             if(err) console.log(err);
+            if(!stat) {
+                const newStat = new Stat({
+                    userID: cUser,
+                    userguildName: newState.guild.members.get(cUser).nickname,
+                    guildid: newState.guild.id,
+                    userName: cUser.tag,
+                    level: 1,
+                    xp: xpadd,
+                    money: cashadd,
+                    msgs: 0,
+                    voicetime: 0,
+                    voicehours: 0,
+                    voiceall: 0
+    
+                })
+                newStat.save().catch(err => console.log(err));
+            }
+            else {
         stat.voicetime = stat.voicetime + 1;
         stat.voiceall = stat.voiceall + 1;
         if(stat.voicetime === 60) {
@@ -100,6 +137,7 @@ bot.on('guildMemberAdd', function(member)  {
             stat.voicetime = 0;
         }
         stat.save().catch(err => console.log(err));
+    }
     })
     }
     setInterval(voicetimer, 60000)
