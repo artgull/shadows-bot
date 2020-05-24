@@ -12,7 +12,7 @@ module.exports.run = (bot, message, args) => {
     let kanal = '435499299137257497'
 
     const channel = message.client.channels.find('id', kanal)
-    message.delete(1)
+    message.delete()
     
     message.channel.send("Введите название товара")
     let filter = m => m.author.id === message.author.id;

@@ -9,7 +9,7 @@ const Stat = require("../models/stats.js");
 module.exports.run = (bot, message, args) => {
     
     
-    message.delete(1);
+    message.delete();
     let author = message.author.id;
     let cat = '435499299137257499';
     let catnesah = '648511794926583808';

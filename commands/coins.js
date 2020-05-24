@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data'
 const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {
-    message.delete(1);
+    message.delete();
     let klan = message.guild.members.cache.get(message.author.id).displayName
     let user = message.author.id;
     let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])

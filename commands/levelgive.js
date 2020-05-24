@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data'
 const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {
-  message.delete(1);
+  message.delete();
   if (message.member.cache.roles.has('435764899369713664'|| '648464327636156416'|| '291716681137520641' || '377124665673383937' || '646629514385817601' || '291714963721027584')){
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[1])
   

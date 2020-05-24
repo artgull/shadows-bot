@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-    message.delete(1);
+    message.delete();
     let arh = message.guild.roles.cache.get('487921687258595351');
     //${arh.toString()} 100 👻
     let shopembed = new Discord.MessageEmbed()
