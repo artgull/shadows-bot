@@ -73,7 +73,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
         if(newStateChannel.id === '291717359746416640') return 
-
+        if(newStateChannel === undefined && oldStateChannel !== undefined) return
   
         Stat.findOne({
             userID: newState.id

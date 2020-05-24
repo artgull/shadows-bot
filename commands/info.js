@@ -50,7 +50,7 @@ module.exports.run = async (bot,message,args) => {
   .addField("**Уровень**", `${stat.level}`)
   .addField("**Опыт**", `${stat.xp}/${nextlv}`)
   .addField("**Баланс**", `${stat.money} 👻`)
-  .addField("**Сообщения", `${stat.msgs}`, true)
+  .addField("**Сообщения**", `${stat.msgs}`, true)
   .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
   message.channel.send(embed);
   try {
