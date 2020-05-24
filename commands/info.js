@@ -1,4 +1,4 @@
-const Discord = module.require("discord.js");
+﻿const Discord = module.require("discord.js");
 const fs = require('fs')
 const mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data', {
@@ -40,7 +40,7 @@ module.exports.run = async (bot,message,args) => {
         if(err) console.log(err);
         newStat.save().catch(err => console.log(err));  
       } 
-        let nextlv = stat.level * 1000;    
+       // let nextlv = stat.level * 1000;    
         let userav = message.mentions.users.first().avatarURL
   const embed = new Discord.RichEmbed()
   .setTitle("**Статистика**")
@@ -85,7 +85,7 @@ catch(err) {
           newStat.save().catch(err => console.log(err));
         }
          
-          let nextlv = stat.level * 1000;
+         // let nextlv = stat.level * 1000;
     const embed = new Discord.RichEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")
