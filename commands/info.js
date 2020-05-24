@@ -52,6 +52,7 @@ module.exports.run = async (bot,message,args) => {
   .addField("**Баланс**", `${stat.money} 👻`)
   .addField("**Сообщения**", `${stat.msgs}`, true)
   .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
+  .setFooter(`От ${message.guild.members.cache.get(message.author.id).displayName}`)
   message.channel.send(embed);
   try {
     fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.cache.get(message.author.id).nickname}) проверил статистику ${pUser.id}(${pUser.displayName})`, 'utf-8')
