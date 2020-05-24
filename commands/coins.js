@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     message.delete();
     let klan = message.guild.members.cache.get(message.author.id).displayName
     let user = message.author.id;
-    let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
+    let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.cache.get(args[1])
     if(args[1] === undefined) {
     Stat.findOne({
         userID: user
