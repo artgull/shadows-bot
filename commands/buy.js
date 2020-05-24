@@ -6,7 +6,7 @@ mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data'
     useUnifiedTopology: true 
 });
 const Stat = require("../models/stats.js");
-module.exports.run = async (bot, message, args) => {
+module.exports.run = (bot, message, args) => {
     
     
     message.delete(1);
@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
                 userID: message.author.id,
                 userName: message.author.tag,
                 guildid: message.guild.id,
-                userguildName: message.guild.members.get(message.author.id).nickname,
+                userguildName: message.guild.members.cache.get(message.author.id).displayName,
                 level: 1,
                 xp: 0,
                 money: 0,

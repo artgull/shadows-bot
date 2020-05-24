@@ -10,7 +10,7 @@ const Stat = require("../models/stats.js");
 module.exports.run = async (bot,message,args) => {
   message.delete(1);
   let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
-  let klan = message.guild.members.get(message.author.id).nickname
+  let klan = message.guild.members.cache.get(message.author.id).displayName
   
   
   let avtor = message.author.id;
@@ -25,7 +25,7 @@ module.exports.run = async (bot,message,args) => {
     if(!stat) {
         const newStat = new Stat({
             userID: pUser.id,
-            userguildName: message.guild.members.get(pUser.id).nickname,
+            userguildName: message.guild.members.cache.get(pUser.id).displayName,
             guildid: message.guild.id,
             userName: pUser.displayName,
             level: 1,
@@ -41,8 +41,8 @@ module.exports.run = async (bot,message,args) => {
         newStat.save().catch(err => console.log(err));  
       } 
        // let nextlv = stat.level * 1000;    
-        let userav = message.mentions.users.first().avatarURL
-  const embed = new Discord.RichEmbed()
+        let userav = message.mentions.users.first().avatarURL()
+  const embed = new Discord.MessageEmbed()
   .setTitle("**Статистика**")
   .setColor("#4169e1")
   .setThumbnail(userav)
@@ -69,7 +69,7 @@ catch(err) {
       if(!stat) {
           const newStat = new Stat({
               userID: avtor,
-              userguildName: message.guild.members.get(avtor).nickname,
+              userguildName: message.guild.members.cache.get(avtor).displayName,
               guildid: message.guild.id,
               userName: message.author.tag,
               level: 1,
@@ -86,10 +86,10 @@ catch(err) {
         }
          
          // let nextlv = stat.level * 1000;
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")
-    .setThumbnail(message.author.avatarURL)
+    .setThumbnail(message.author.avatarURL())
     .addField("**Никнейм**", klan)
     .addField("**Уровень**", `${stat.level}`)
     .addField("**Опыт**", `${stat.xp}/${nextlv}`)

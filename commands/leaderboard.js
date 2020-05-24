@@ -16,14 +16,14 @@ module.exports.run = async (bot, message, args) => {
       ]).exec((err, res) => {
         if (err) console.log(err);
 
-    let leadembed = new Discord.RichEmbed()
+    let leadembed = new Discord.MessageEmbed()
     .setTitle("Таблица лидеров по уровню")
     .setColor("#4169e1")
     if(res.length === 0) {
         leadembed.setDescription("Пусто.")
     } else if(res.length < 5) {
         for(i = 0; i < res.length; i++) {
-            let member = message.guild.members.get(res[i].userID)
+            let member = message.guild.members.cache.get(res[i].userID)
             if (member.nickname === null) {
                 leadembed.addField(`${i+1}. ${member.user.username}`, `**Уровень:** ${res[i].level}`, true);
             } else
@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
         }
     } else {
         for(i = 0; i < 5; i++) {
-            let member = message.guild.members.get(res[i].userID)
+            let member = message.guild.members.cache.get(res[i].userID)
             if (member.nickname === null) {
                 leadembed.addField(`${i+1}. ${member.user.username}`, `**Уровень:** ${res[i].level}`, true);
             } else
@@ -51,14 +51,14 @@ module.exports.run = async (bot, message, args) => {
           ]).exec((err, res) => {
             if (err) console.log(err);
     
-        let leadembed = new Discord.RichEmbed()
+        let leadembed = new Discord.MessageEmbed()
         .setTitle("Таблица лидеров по душам")
         .setColor("#4169e1")
         if(res.length === 0) {
             leadembed.setDescription("Пусто.")
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
             }
         } else {
             for(i = 0; i < 5; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
@@ -86,14 +86,14 @@ module.exports.run = async (bot, message, args) => {
           ]).exec((err, res) => {
             if (err) console.log(err);
     
-        let leadembed = new Discord.RichEmbed()
+        let leadembed = new Discord.MessageEmbed()
         .setTitle("Таблица лидеров по сообщениям")
         .setColor("#4169e1")
         if(res.length === 0) {
             leadembed.setDescription("Пусто.")
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**💬** ${res[i].msgs}`, true);
                 } else
@@ -101,7 +101,7 @@ module.exports.run = async (bot, message, args) => {
             }
         } else {
             for(i = 0; i < 5; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**💬** ${res[i].msgs}`, true);
                 } else
@@ -119,14 +119,14 @@ module.exports.run = async (bot, message, args) => {
           ]).exec((err, res) => {
             if (err) console.log(err);
     
-        let leadembed = new Discord.RichEmbed()
+        let leadembed = new Discord.MessageEmbed()
         .setTitle("Таблица лидеров по времени в голосовых каналах(не считая AFK)")
         .setColor("#4169e1")
         if(res.length === 0) {
             leadembed.setDescription("Пусто.")
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
                 } else
@@ -134,7 +134,7 @@ module.exports.run = async (bot, message, args) => {
             }
         } else {
             for(i = 0; i < 5; i++) {
-                let member = message.guild.members.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
                 } else

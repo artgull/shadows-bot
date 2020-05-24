@@ -2,9 +2,9 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
     message.delete(1);
-    let arh = message.guild.roles.get('487921687258595351');
+    let arh = message.guild.roles.cache.get('487921687258595351');
     //${arh.toString()} 100 👻
-    let shopembed = new Discord.RichEmbed()
+    let shopembed = new Discord.MessageEmbed()
     .setTitle("**Магазин**")
     .setDescription(`
 

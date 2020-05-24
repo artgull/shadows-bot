@@ -9,7 +9,7 @@ const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {
     message.delete(1);
-    let klan = message.guild.members.get(message.author.id).nickname
+    let klan = message.guild.members.cache.get(message.author.id).displayName
     let user = message.author.id;
     let pUser = message.guild.member(message.mentions.users.first())|| message.guild.members.get(args[1])
     if(args[1] === undefined) {
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         if(!stat) {
             const newStat = new Stat({
                 userID: user,
-                userguildName: message.guild.members.get(user).nickname,
+                userguildName: message.guild.members.cache.get(message.author.id).displayName,
                 guildid: message.guild.id,
                 userName: message.author.tag,
                 level: 1,
@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
 
     let uCoins = stat.money;
 
-    let coinEmbed = new Discord.RichEmbed()
+    let coinEmbed = new Discord.MessageEmbed()
     .setAuthor(klan)
     .setThumbnail(message.author.avatarURL)
     .setColor("#4169e1")
@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
         if(!stat) {
             const newStat = new Stat({
                 userID: pUser.id,
-                userguildName: message.guild.members.get(pUser.id).nickname,
+                userguildName: message.guild.members.cache.get(pUser.id).displayName,
                 guildid: message.guild.id,
                 userName: pUser.displayName,
                 level: 1,
@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
         } else {
     let userav = message.mentions.users.first().avatarURL
     let cash = stat.money
-    let coinEmbed = new Discord.RichEmbed()
+    let coinEmbed = new Discord.MessageEmbed()
     .setTitle(`${pUser.displayName}`)
     .setColor("#4169e1")
     .setDescription(`На счету ${cash} 👻`)

@@ -56,9 +56,14 @@ bot.on('guildMemberAdd', function(member)  {
     var helper = fs.readFileSync('./welcome.txt', 'utf-8');
     member.send(helper)
 });
-/*bot.on('voiceStateUpdate', async (oldState, newState) => {
+bot.on('guildMemberRemove', function(member) {
+    let nChannel = bot.channels.cache.get('291713993440231424')
+    nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он свистит в других местах.`)
+    console.log(member)
+});
+bot.on('voiceStateUpdate', async (oldState, newState) => {
     let cUser = newState.id
-            
+    //console.log(newState.member.user.tag)
     let xpadd = 30;
     let cashadd = 30;
 
@@ -67,7 +72,7 @@ bot.on('guildMemberAdd', function(member)  {
     let newStateChannel = newState.voiceChannel
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
-        if(newStateChannel.id === '690192044643188748') return 
+        if(newStateChannel.id === '291717359746416640') return 
 
   
         Stat.findOne({
@@ -78,9 +83,9 @@ bot.on('guildMemberAdd', function(member)  {
             if(!stat) {
             const newStat = new Stat({
                 userID: cUser,
-                userguildName: newState.guild.members.get(cUser.id).nickname,
+                userguildName: newState.guild.members.cache.get(cUser).displayName,
                 guildid: newState.guild.id,
-                userName: cUser.tag,
+                userName: newState.member.user.tag,
                 level: 1,
                 xp: xpadd,
                 money: cashadd,
@@ -105,7 +110,7 @@ bot.on('guildMemberAdd', function(member)  {
         )
     }
     }
-    setInterval(voicer, 180000)
+    setInterval(voicer, 5000)
     function voicetimer() {
         Stat.findOne({
             userID: newState.id
@@ -115,16 +120,16 @@ bot.on('guildMemberAdd', function(member)  {
             if(!stat) {
                 const newStat = new Stat({
                     userID: cUser,
-                    userguildName: newState.guild.members.get(cUser).nickname,
+                    userguildName: newState.guild.members.cache.get(cUser).displayName,
                     guildid: newState.guild.id,
-                    userName: cUser.tag,
+                    userName: newState.member.user.tag,
                     level: 1,
                     xp: xpadd,
                     money: cashadd,
                     msgs: 0,
-                    voicetime: 0,
+                    voicetime: 1,
                     voicehours: 0,
-                    voiceall: 0
+                    voiceall: 1
     
                 })
                 newStat.save().catch(err => console.log(err));
@@ -140,8 +145,8 @@ bot.on('guildMemberAdd', function(member)  {
     }
     })
     }
-    setInterval(voicetimer, 60000)
-})*/
+    setInterval(voicetimer, 5000)
+})
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -157,7 +162,7 @@ bot.on('message', async message => {
     //if(message.content.startsWith(botconfig.prefix) || message.author.bot) return;
     //else await exp(message.author)
 
- /*   if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
+    if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
     else {
         
         let xpadd;
@@ -165,13 +170,13 @@ bot.on('message', async message => {
         
     
     
-     if(message.member.roles.find(r => r.name === 'Бес')) {
+     if(message.guild.roles.cache.find(r => r.name === 'Бес')) {
         xpadd = Math.floor(Math.random() * 22) + 17;
         cashadd = Math.floor(Math.random() * 22) + 17;
-    } else if(message.member.roles.find(r => r.name === 'Демон')) {
+    } else if(message.guild.roles.cache.find(r => r.name === 'Демон')) {
         xpadd = Math.floor(Math.random() * 24) + 19;
         cashadd = Math.floor(Math.random() * 24) + 19;
-    } else if(message.member.roles.find(r => r.name === 'Архонт' || 'Офицер' || 'Офицер в отставке' || 'Старший офицер' || 'Зам лидера' || 'Админ')) {
+    } else if(message.guild.roles.cache.find(r => r.name === 'Архонт' || 'Офицер' || 'Офицер в отставке' || 'Старший офицер' || 'Зам лидера' || 'Админ')) {
         xpadd = Math.floor(Math.random() * 26) + 21;
         cashadd = Math.floor(Math.random() * 26) + 21;
     } else { 
@@ -186,7 +191,7 @@ bot.on('message', async message => {
         cashadd = cashadd * 1.2;
     } else if (message.member.roles.find(r => r.name === 'Архонт')){
         cashadd = Math.floor(cashadd * 1.5);
-    } //тут было окончание
+    } */
     
     Stat.findOne({
         userID: message.author.id
@@ -196,7 +201,7 @@ bot.on('message', async message => {
         if(!stat) {
             const newStat = new Stat({
                 userID: message.author.id,
-                userguildName: message.guild.members.get(message.author.id).nickname,
+                userguildName: message.guild.members.cache.get(message.author.id).displayName,
                 guildid: message.guild.id,
                 userName: message.author.tag,
                 level: 1,
@@ -229,7 +234,7 @@ bot.on('message', async message => {
         .setColor("#000FFF")
         .addField("🤡", `${coins[userid].xpadd} клоунов добавлено`);
 
-        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); //тут было кончание
+        message.channel.send(coinEmbed).then(msg => {msg.delete(5000)}); */
     
     })
     
@@ -276,8 +281,8 @@ bot.on('message', async message => {
         if(collected.first().content === '1') return message.author.send('https://imgur.com/8eZ9Dtk');
         message.author.send('Done !');
             }
-        }); // тут было окончание
-        */
+        }); */
+        
 
 });
   
