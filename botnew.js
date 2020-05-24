@@ -306,7 +306,7 @@ message.author.send('Done !');
 
 bot.on('ready', () => {
     console.log('Bot ready');
-   // bot.user.setPresence({game:{name: '-помощь для просмотра команд', type: 2}});
+    bot.user.setPresence({game:{name: '-помощь для просмотра команд', type: 2}});
 });
 
 bot.login(botconfig.token);

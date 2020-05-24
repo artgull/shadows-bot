@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
             userID: pUser.id,
             userguildName: message.guild.members.cache.get(pUser.id).displayName,
             guildid: message.guild.id,
-            userName: pUser.displayName,
+            userName: pUser.tag,
             level: 1,
             xp: 0,
             money: 0,
