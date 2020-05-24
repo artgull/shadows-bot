@@ -73,7 +73,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
         if(newStateChannel.id === '291717359746416640') return 
-        if(newStateChannel === undefined && oldStateChannel !== undefined) return
+        if(newStateChannel === undefined && oldStateChannel !== undefined) {clearInterval(voicer); clearInterval(voicetimer); return}
   
         Stat.findOne({
             userID: newState.id
@@ -110,7 +110,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
         )
     }
     }
-    setInterval(voicer, 5000)
+    setInterval(voicer, 180000)
     function voicetimer() {
         Stat.findOne({
             userID: newState.id
@@ -145,7 +145,7 @@ bot.on('voiceStateUpdate', async (oldState, newState) => {
     }
     })
     }
-    setInterval(voicetimer, 5000)
+    setInterval(voicetimer, 60000)
 })
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;

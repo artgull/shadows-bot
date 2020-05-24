@@ -25,17 +25,17 @@ module.exports.run = async (bot, message, args) => {
         for(i = 0; i < res.length; i++) {
             let member = message.guild.members.cache.get(res[i].userID)
             if (member.nickname === null) {
-                leadembed.addField(`${i+1}. ${member.user.username}`, `**Уровень:** ${res[i].level}`, true);
+                leadembed.addField(`${i+1}. ${member.user.username}`, `**⭐:** ${res[i].level}`, true);
             } else
-            leadembed.addField(`${i+1}. ${member.nickname}`, `**Уровень:** ${res[i].level}`, true);
+            leadembed.addField(`${i+1}. ${member.nickname}`, `**⭐:** ${res[i].level}`, true);
         }
     } else {
         for(i = 0; i < 5; i++) {
             let member = message.guild.members.cache.get(res[i].userID)
             if (member.nickname === null) {
-                leadembed.addField(`${i+1}. ${member.user.username}`, `**Уровень:** ${res[i].level}`, true);
+                leadembed.addField(`${i+1}. ${member.user.username}`, `**⭐:** ${res[i].level}`, true);
             } else
-            leadembed.addField(`${i+1}. ${member.nickname}`, `**Уровень:** ${res[i].level}`, true);
+            leadembed.addField(`${i+1}. ${member.nickname}`, `**⭐:** ${res[i].level}`, true);
         }
     }
     message.channel.send(leadembed);

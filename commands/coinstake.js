@@ -9,7 +9,7 @@ const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {   
   message.delete();
-    if (message.member.cache.roles.has('435764899369713664'|| '648464327636156416' || '291716681137520641' || '377124665673383937' || '646629514385817601' || '291714963721027584')){
+    if (message.member.roles.cache.has('435764899369713664'|| '648464327636156416' || '291716681137520641' || '377124665673383937' || '646629514385817601' || '291714963721027584')){
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[1])
   
   Stat.findOne({
@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
   stat.save().catch(err => console.log(err));
   message.channel.send(`${message.author} изъято у ${pUser} ${args[2]} 👻.`);
   try {
-    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.get(message.author.id).nickname}) изъял у ${pUser.id}(${pUser.displayName}) ${args[2]} душ`, 'utf-8')
+    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.cache.get(message.author.id).nickname}) изъял у ${pUser.id}(${pUser.displayName}) ${args[2]} душ`, 'utf-8')
 }
 catch(err) {
     console.log(err)

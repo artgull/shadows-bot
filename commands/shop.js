@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
     `)
     .setThumbnail('https://cdn.discordapp.com/attachments/681409687039901726/686235348480950292/botava.png')
     .setColor("#4169e1")
-    .setFooter("Используй -buy для покупки")
+    //.setFooter("Используй -buy для покупки")
     //.addField(message.guild.member, "3000 👻")
     message.channel.send(shopembed);
 

@@ -39,9 +39,9 @@ module.exports.run = async (bot, message, args) => {
 
     let coinEmbed = new Discord.MessageEmbed()
     .setAuthor(klan)
-    .setThumbnail(message.author.avatarURL)
+    .setThumbnail(message.author.avatarURL())
     .setColor("#4169e1")
-    .addField("На счету",`${uCoins} 👻`);
+    .setDescription(`На счету ${uCoins} 👻`);
 
     message.channel.send(coinEmbed);
         }
@@ -68,13 +68,14 @@ module.exports.run = async (bot, message, args) => {
             if(err) console.log(err);
             newStat.save().catch(err => console.log(err));
         } else {
-    let userav = message.mentions.users.first().avatarURL
+    let userav = message.mentions.users.first().avatarURL()
     let cash = stat.money
     let coinEmbed = new Discord.MessageEmbed()
     .setTitle(`${pUser.displayName}`)
     .setColor("#4169e1")
     .setDescription(`На счету ${cash} 👻`)
     .setThumbnail(userav)
+    .setFooter(`От ${message.guild.members.cache.get(message.author.id).displayName}`)
     try {
         fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.cache.get(message.author.id).nickname}) проверил баланс ${pUser.id}(${pUser.displayName})`, 'utf-8')
     }
