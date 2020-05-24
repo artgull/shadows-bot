@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
     .setDescription(`На счету ${cash} 👻`)
     .setThumbnail(userav)
     try {
-        fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.get(message.author.id).nickname}) проверил баланс ${pUser.id}(${pUser.displayName})`, 'utf-8')
+        fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.cache.get(message.author.id).nickname}) проверил баланс ${pUser.id}(${pUser.displayName})`, 'utf-8')
     }
     catch(err) {
         console.log(err)

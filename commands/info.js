@@ -39,8 +39,8 @@ module.exports.run = async (bot,message,args) => {
         })
         if(err) console.log(err);
         newStat.save().catch(err => console.log(err));  
-      } 
-       // let nextlv = stat.level * 1000;    
+      } else {
+        let nextlv = stat.level * 1000;    
         let userav = message.mentions.users.first().avatarURL()
   const embed = new Discord.MessageEmbed()
   .setTitle("**Статистика**")
@@ -54,12 +54,12 @@ module.exports.run = async (bot,message,args) => {
   .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
   message.channel.send(embed);
   try {
-    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.get(message.author.id).nickname}) проверил статистику ${pUser.id}(${pUser.displayName})`, 'utf-8')
+    fs.appendFileSync("./log.txt", `\n[${message.createdAt}] ${message.author.id}(${message.guild.members.cache.get(message.author.id).nickname}) проверил статистику ${pUser.id}(${pUser.displayName})`, 'utf-8')
 }
 catch(err) {
     console.log(err)
 }
-      
+}
     })
   } else {
     Stat.findOne({
@@ -84,8 +84,8 @@ catch(err) {
           if(err) console.log(err);
           newStat.save().catch(err => console.log(err));
         }
-         
-         // let nextlv = stat.level * 1000;
+         else {
+          let nextlv = stat.level * 1000;
     const embed = new Discord.MessageEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")
@@ -97,7 +97,7 @@ catch(err) {
     .addField("**Сообщения**", `${stat.msgs}`, true)
     .addField("**Время в голосе**", `${stat.voicehours}ч ${stat.voicetime}мин`, true)
     message.channel.send(embed);
-    
+         }
         
     })
 }
