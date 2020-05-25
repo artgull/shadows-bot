@@ -58,10 +58,10 @@ bot.on('guildMemberAdd', function(member)  {
 });
 bot.on('guildMemberRemove', function(member) {
     let nChannel = bot.channels.cache.get('291713993440231424')
-    nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он свистит в других местах.`)
+    nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он будет свистеть в другом месте.`)
     console.log(member)
 });
-bot.on('voiceStateUpdate', function(oldState, newState) {
+bot.on('voiceStateUpdate', (oldState, newState) {
     let cUser = newState.id
     //console.log(newState.member.user.tag)
     let xpadd = Math.floor(Math.random() * 20) + 20;
@@ -91,9 +91,9 @@ bot.on('voiceStateUpdate', function(oldState, newState) {
                 xp: xpadd,
                 money: cashadd,
                 msgs: 0,
-                voicetime: 0,
+                voicetime: 1,
                 voicehours: 0,
-                voiceall: 0
+                voiceall: 1
 
             })
             newStat.save().catch(err => console.log(err));
@@ -112,8 +112,7 @@ bot.on('voiceStateUpdate', function(oldState, newState) {
             }
             stat.save().catch(err => console.log(err));
             }
-    }
-        )
+    })
 
     }
     
