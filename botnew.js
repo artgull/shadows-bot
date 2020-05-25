@@ -61,7 +61,7 @@ bot.on('guildMemberRemove', function(member) {
     nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он свистит в других местах.`)
     console.log(member)
 });
-bot.on('voiceStateUpdate', (oldState, newState) => {
+bot.on('voiceStateUpdate', function(oldState, newState) {
     let cUser = newState.id
     //console.log(newState.member.user.tag)
     let xpadd = 30;
@@ -73,7 +73,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
         if(newStateChannel.id === '291717359746416640') return 
-        if(newStateChannel === undefined && oldStateChannel !== undefined) return
+        
   
         Stat.findOne({
             userID: newState.id
@@ -108,9 +108,9 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
             }
     }
         )
+    
     }
-    }
-    setTimeout(voicer, 180000)
+    setInterval(voicer, 180000)
     function voicetimer() {
         Stat.findOne({
             userID: newState.id
@@ -145,7 +145,8 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     }
     })
     }
-    setTimeout(voicetimer, 60000)
+    setInterval(voicetimer, 60000)
+    }
 })
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
