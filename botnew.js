@@ -63,7 +63,6 @@ bot.on('guildMemberRemove', function(member) {
 });
 bot.on('voiceStateUpdate', (oldState, newState) => {
     let cUser = newState.id
-    //console.log(newState.member.user.tag)
     let xpadd = Math.floor(Math.random() * 20) + 20;
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
@@ -78,7 +77,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
         
   
         Stat.findOne({
-            userID: newState.id
+            userID: cUser
             
         }, (err, stat) => {
             if(err) console.log(err);
@@ -119,8 +118,8 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     setInterval(voicer, 60000)
 }
-
-})
+if(newStateChannel === undefined) return console.log("member left channel")
+});
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
