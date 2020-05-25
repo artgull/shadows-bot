@@ -61,7 +61,7 @@ bot.on('guildMemberRemove', function(member) {
     nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он будет свистеть в другом месте.`)
     console.log(member)
 });
-bot.on('voiceStateUpdate', (oldState, newState) {
+bot.on('voiceStateUpdate', (oldState, newState) => {
     let cUser = newState.id
     //console.log(newState.member.user.tag)
     let xpadd = Math.floor(Math.random() * 20) + 20;
