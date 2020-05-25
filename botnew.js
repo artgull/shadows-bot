@@ -66,13 +66,14 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let xpadd = Math.floor(Math.random() * 20) + 20;
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
-
+    console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
     
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
-    
+    if(newStateChannel === undefined) return console.log("member left channel")
+    if(oldStateChannel === undefined) return console.log("wtf")
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
-        console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
+        
         if(newStateChannel.id === '291717359746416640') return 
         function voicer() {
         
@@ -119,8 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     setInterval(voicer, 60000)
 }
-if(newStateChannel === undefined) return console.log("member left channel")
-if(oldStateChannel === undefined) return console.log("wtf")
+
 
 });
 bot.on('message', async message => {
