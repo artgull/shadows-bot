@@ -64,8 +64,9 @@ bot.on('guildMemberRemove', function(member) {
 bot.on('voiceStateUpdate', function(oldState, newState) {
     let cUser = newState.id
     //console.log(newState.member.user.tag)
-    let xpadd = 30;
-    let cashadd = 30;
+    let xpadd = Math.floor(Math.random() * 20) + 20;
+    let cashadd = Math.floor(Math.random() * 20) + 20;
+    
 
     function voicer() {
     let oldStateChannel = oldState.voiceChannel
@@ -103,50 +104,22 @@ bot.on('voiceStateUpdate', function(oldState, newState) {
             if(stat.xp >= nextlvl) stat.level++;
             stat.money = stat.money + cashadd;
             stat.xp = stat.xp + xpadd;
-            
+            stat.voicetime = stat.voicetime + 1;
+            stat.voiceall = stat.voiceall + 1;
+            if(stat.voicetime === 60) {
+            stat.voicehours++;
+            stat.voicetime = 0;
+            }
             stat.save().catch(err => console.log(err));
             }
     }
         )
+
+    }
     
-    }
-    setInterval(voicer, 180000)
-    function voicetimer() {
-        Stat.findOne({
-            userID: newState.id
-            
-        }, (err, stat) => {
-            if(err) console.log(err);
-            if(!stat) {
-                const newStat = new Stat({
-                    userID: cUser,
-                    userguildName: newState.guild.members.cache.get(cUser).displayName,
-                    guildid: newState.guild.id,
-                    userName: newState.member.user.tag,
-                    level: 1,
-                    xp: xpadd,
-                    money: cashadd,
-                    msgs: 0,
-                    voicetime: 1,
-                    voicehours: 0,
-                    voiceall: 1
     
-                })
-                newStat.save().catch(err => console.log(err));
-            }
-            else {
-        stat.voicetime = stat.voicetime + 1;
-        stat.voiceall = stat.voiceall + 1;
-        if(stat.voicetime === 60) {
-            stat.voicehours++;
-            stat.voicetime = 0;
-        }
-        stat.save().catch(err => console.log(err));
-    }
-    })
-    }
-    setInterval(voicetimer, 60000)
-    }
+}
+setInterval(voicer, 60000)
 })
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
