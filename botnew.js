@@ -68,8 +68,8 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     
     
-    let oldStateChannel = oldState.voiceChannel
-    let newStateChannel = newState.voiceChannel
+    let oldStateChannel = oldState.channel
+    let newStateChannel = newState.channel
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
     if(newStateChannel === undefined) return console.log("member left channel")
     if(oldStateChannel === undefined) return console.log("wtf")
