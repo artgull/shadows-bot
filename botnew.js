@@ -73,8 +73,8 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
     if(newStateChannel !== undefined) return console.log("member connected")
     if(oldStateChannel === undefined) return console.log("wtf")
-    if(oldStateChannel === undefined && newStateChannel !== undefined) {
-        
+    if(newStateChannel !== undefined) {
+        console.log(newStateChannel.id)
         if(newStateChannel.id === '291717359746416640') return 
         function voicer() {
         
@@ -121,7 +121,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     setInterval(voicer, 60000)
 }
-
+else return
 
 });
 bot.on('message', async message => {
