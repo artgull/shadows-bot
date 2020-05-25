@@ -68,12 +68,13 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
 
-    function voicer() {
+    
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
         if(newStateChannel.id === '291717359746416640') return 
+        function voicer() {
         
   
         Stat.findOne({
@@ -116,9 +117,9 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
     }
     
-    
+    setInterval(voicer, 60000)
 }
-setInterval(voicer, 60000)
+
 })
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
