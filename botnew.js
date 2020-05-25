@@ -71,9 +71,10 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let oldStateChannel = oldState.channel
     let newStateChannel = newState.channel
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
-    if(newStateChannel !== undefined)  console.log("member connected")
-    if(oldStateChannel === undefined)  console.log("wtf")
-    if(newStateChannel !== undefined) {
+
+   // if(newStateChannel !== undefined)  console.log("member connected")
+    //if(oldStateChannel === undefined)  console.log("wtf")
+    if(oldsStateChannel === undefined && newStateChannel !== undefined) {
         console.log(newStateChannel.id)
         if(newStateChannel.id === '291717359746416640') return 
         function voicer() {
