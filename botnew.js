@@ -66,10 +66,11 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let xpadd = Math.floor(Math.random() * 20) + 20;
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
-    console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
+    
     
     let oldStateChannel = oldState.voiceChannel
     let newStateChannel = newState.voiceChannel
+    console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
     if(newStateChannel === undefined) return console.log("member left channel")
     if(oldStateChannel === undefined) return console.log("wtf")
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
