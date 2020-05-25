@@ -120,6 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     setInterval(voicer, 60000)
 }
 if(newStateChannel === undefined) return console.log("member left channel")
+if(oldStateChannel === undefined) return console.log("wtf")
 
 });
 bot.on('message', async message => {
