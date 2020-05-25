@@ -72,6 +72,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let newStateChannel = newState.voiceChannel
     
     if(oldStateChannel === undefined && newStateChannel !== undefined) {
+        console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
         if(newStateChannel.id === '291717359746416640') return 
         function voicer() {
         
@@ -119,6 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     setInterval(voicer, 60000)
 }
 if(newStateChannel === undefined) return console.log("member left channel")
+
 });
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
