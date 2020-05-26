@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
         newStat.save().catch(err => console.log(err));
     } else {
   
-  if((stat.xp + +args[2]) > (stat.level * 500)) return message.reply("Ты не можешь выдать больше опыта чем позволяет уровень.") 
+  if((stat.xp + +args[2]) > (stat.level * 2000)) return message.reply("Ты не можешь выдать больше опыта чем позволяет уровень.") 
   else {
     stat.xp = stat.xp + +args[2];
     stat.save().catch(err => console.log(err));

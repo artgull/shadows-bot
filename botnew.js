@@ -78,7 +78,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
         console.log(newState.member.user.tag)
         if(newStateChannel === '291717359746416640') return 
         function voicer() {
-            console.log(newState.member.user.id)
+            console.log(newState.member.user.id + newState.member.user.tag)
   
         Stat.findOne({
             userID: cUser
@@ -104,7 +104,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
         }
             
             else {
-            nextlvl = stat.level * 1000;
+            nextlvl = stat.level * 2000;
             if(stat.xp >= nextlvl) stat.level++;
             stat.money = stat.money + cashadd;
             stat.xp = stat.xp + xpadd;
@@ -120,7 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
     }
     
-    setTimeout(voicer, 60000)
+    setInterval(voicer, 60000)
 }
 else if(oldStateChannel !== undefined && newStateChannel === undefined) console.log("member left")
 
@@ -196,7 +196,7 @@ bot.on('message', async message => {
 
     else {
        
-        nextlvl = stat.level * 1000;
+        nextlvl = stat.level * 2000;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
         stat.xp = stat.xp + xpadd;
