@@ -74,7 +74,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
      if(newStateChannel === undefined)  console.log("member left")
     //if(oldStateChannel === undefined)  console.log("wtf")
-    if(oldStateChannel === undefined && newStateChannel !== undefined) {
+    if(newStateChannel !== undefined) {
         console.log(newState.member.user.tag)
         if(newStateChannel === '291717359746416640') return 
         function voicer() {
