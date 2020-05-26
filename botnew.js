@@ -78,7 +78,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
         console.log(newState.member.user.tag)
         if(newStateChannel === '291717359746416640') return 
         function voicer() {
-            console.log(newStateChannel)
+            console.log(newState.member.user.id)
   
         Stat.findOne({
             userID: cUser
