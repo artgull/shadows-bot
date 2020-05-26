@@ -102,7 +102,7 @@ module.exports.run = async (bot, message, args) => {
         } else {
             for(i = 0; i < 5; i++) {
                 let member = message.guild.members.cache.get(res[i].userID)
-                if (member.user.nickname === null) {
+                if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**💬** ${res[i].msgs}`, true);
                 } else
                 leadembed.addField(`${i+1}. ${member.user.nickname}`, `**💬** ${res[i].msgs}`, true);
