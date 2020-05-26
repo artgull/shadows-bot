@@ -58,12 +58,11 @@ module.exports.run = async (bot, message, args) => {
             leadembed.setDescription("Пусто.")
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
-                let member = bot.users.cache.get(res[i].userID)
-                console.log(member)
-                if (member.nickname === null) {
+                let member = message.guild.members.cache.get(res[i].userID)
+                if (member.user.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
+                leadembed.addField(`${i+1}. ${member.user.nickname}`, `**👻** ${res[i].money}`, true);
             }
         } else {
             for(i = 0; i < 5; i++) {
