@@ -120,7 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
     }
     
-    setInterval(voicer, 60000)
+    setTimeout(voicer, 60000)
 }
 else if(oldStateChannel !== undefined && newStateChannel === undefined) console.log("member left")
 
