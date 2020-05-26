@@ -59,6 +59,7 @@ module.exports.run = async (bot, message, args) => {
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
                 let member = bot.users.cache.get(res[i].userID)
+                console.log(member)
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
