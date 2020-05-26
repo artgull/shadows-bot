@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
+                leadembed.addField(`${i+1}. ${member.user.nickname}`, `**👻** ${res[i].money}`, true);
             }
         }
         message.channel.send(leadembed);
