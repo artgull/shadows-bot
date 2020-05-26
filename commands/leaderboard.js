@@ -66,11 +66,11 @@ module.exports.run = async (bot, message, args) => {
             }
         } else {
             for(i = 0; i < 5; i++) {
-                let member = bot.users.cache.get(res[i].userID)
+                let member = bot.users.cache.get(res[i].userID.toString())
                 if (member.nickname === null) {
                     leadembed.addField(`${i+1}. ${member.user.username}`, `**👻** ${res[i].money}`, true);
                 } else
-                leadembed.addField(`${i+1}. ${member.id.nickname}`, `**👻** ${res[i].money}`, true);
+                leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
             }
         }
         message.channel.send(leadembed);
