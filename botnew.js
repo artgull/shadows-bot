@@ -122,7 +122,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     setInterval(voicer, 60000)
 }
-else return
+if(newStateChannel === undefined) return console.log("member left")
 
 });
 bot.on('message', async message => {
