@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
             }
         } else {
             for(i = 0; i < 5; i++) {
-                let member = bot.users.cache.get(res[i].userID)
+                let member = message.guild.members.cache.get(res[i].userID)
                 leadembed.addField(`${i+1}. ${member.displayName}`, `**👻** ${res[i].money}`, true);
             }
         }
