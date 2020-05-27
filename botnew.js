@@ -195,7 +195,7 @@ bot.on('message', async message => {
         }
 
     else {
-       
+        function mon () {
         nextlvl = stat.level * 2000;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
         stat.money = stat.money + cashadd;
@@ -203,8 +203,8 @@ bot.on('message', async message => {
         stat.msgs++;
         stat.save().catch(err => console.log(err));
 
-    
-        
+        }
+        setTimeout(mon, 180000)
     }
 
        /* let coinEmbed = new discord.RichEmbed()
