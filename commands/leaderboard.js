@@ -24,12 +24,12 @@ module.exports.run = async (bot, message, args) => {
     } else if(res.length < 5) {
         for(i = 0; i < res.length; i++) {
             let member = message.guild.members.cache.get(res[i].userID)
-            leadembed.addField(`${i+1}. ${member.user.nickname}`, `**⭐:** ${res[i].level}`, true);
+            leadembed.addField(`${i+1}. ${member.displayName}`, `**⭐:** ${res[i].level}`, true);
         }
     } else {
         for(i = 0; i < 5; i++) {
             let member = message.guild.members.cache.get(res[i].userID)
-            leadembed.addField(`${i+1}. ${member.user.nickname}`, `**⭐:** ${res[i].level}`, true);
+            leadembed.addField(`${i+1}. ${member.displayName}`, `**⭐:** ${res[i].level}`, true);
         }
     }
     message.channel.send(leadembed);
@@ -53,12 +53,12 @@ module.exports.run = async (bot, message, args) => {
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
                 let member = message.guild.members.cache.get(res[i].userID)
-                leadembed.addField(`${i+1}. ${member.user.nickname}`, `**👻** ${res[i].money}`, true);
+                leadembed.addField(`${i+1}. ${member.displayName}`, `**👻** ${res[i].money}`, true);
             }
         } else {
             for(i = 0; i < 5; i++) {
                 let member = bot.users.cache.get(res[i].userID)
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**👻** ${res[i].money}`, true);
+                leadembed.addField(`${i+1}. ${member.displayName}`, `**👻** ${res[i].money}`, true);
             }
         }
         message.channel.send(leadembed);
@@ -82,12 +82,12 @@ module.exports.run = async (bot, message, args) => {
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
                 let member = message.guild.members.cache.get(res[i].userID)
-                leadembed.addField(`${i+1}. ${member.nickname}`, `**💬** ${res[i].msgs}`, true);
+                leadembed.addField(`${i+1}. ${member.displayName}`, `**💬** ${res[i].msgs}`, true);
             }
         } else {
             for(i = 0; i < 5; i++) {
                 let member = message.guild.members.cache.get(res[i].userID)
-                leadembed.addField(`${i+1}. ${member.user.nickname}`, `**💬** ${res[i].msgs}`, true);
+                leadembed.addField(`${i+1}. ${member.displayName}`, `**💬** ${res[i].msgs}`, true);
             }
         }
         message.channel.send(leadembed);
@@ -109,7 +109,7 @@ module.exports.run = async (bot, message, args) => {
         } else if(res.length < 5) {
             for(i = 0; i < res.length; i++) {
                 let member = message.guild.members.cache.get(res[i].userID)
-                leadembed.addField(`${i+1}. ${member.user.nickname}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
+                leadembed.addField(`${i+1}. ${member.displayName}`, `**:clock4:** ${res[i].voicehours}ч ${res[i].voicetime}мин`, true);
             }
         } else {
             for(i = 0; i < 5; i++) {
