@@ -67,7 +67,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
     
-    
+    function voicer() {
     let oldStateChannel = oldState.channelID
     let newStateChannel = newState.channelID
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
@@ -77,7 +77,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     if(newStateChannel !== undefined) {
         console.log(newState.member.user.tag)
         if(newStateChannel === '291717359746416640') return 
-        function voicer() {
+        
             console.log(newState.member.user.id + newState.member.user.tag)
   
         Stat.findOne({
