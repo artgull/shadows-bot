@@ -120,7 +120,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
     }
     
-    setTimeout(voicer, 60000)
+    setInterval(voicer, 60000)
 }
 
 });
