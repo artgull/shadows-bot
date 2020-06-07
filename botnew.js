@@ -62,12 +62,13 @@ bot.on('guildMemberRemove', function(member) {
     console.log(member)
 });
 bot.on('voiceStateUpdate', (oldState, newState) => {
+    function voicer() {
     let cUser = newState.id
     let xpadd = Math.floor(Math.random() * 20) + 20;
     let cashadd = Math.floor(Math.random() * 20) + 20;
     
     
-    function voicer() {
+    
     let oldStateChannel = oldState.channelID
     let newStateChannel = newState.channelID
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
