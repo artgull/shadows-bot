@@ -1,4 +1,4 @@
-﻿const discord = require('discord.js');
+const discord = require('discord.js');
 const mongoose = require("mongoose");
 const botconfig = require("./botconfig.json");
 const bot = new discord.Client();
@@ -73,7 +73,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     let newStateChannel = newState.channelID
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
 
-     if(newStateChannel === undefined)  console.log("member left")
+     if(newStateChannel === undefined) return console.log("member left")
     //if(oldStateChannel === undefined)  console.log("wtf")
     if(newStateChannel !== undefined) {
         console.log(newState.member.user.tag)
@@ -121,9 +121,9 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
     }
     
-    setInterval(voicer, 60000)
+    
 }
-
+setInterval(voicer, 60000)
 });
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
