@@ -62,8 +62,8 @@ bot.on('guildMemberRemove', function(member) {
     console.log(member)
 });
 bot.on('voiceStateUpdate', (oldState, newState) => {
-    let oldStateChannel = oldState.channelID
-    let newStateChannel = newState.channelID
+    let oldStateChannel = oldState.channel
+    let newStateChannel = newState.channel
 
     if(newStateChannel === undefined) return console.log("member left")
     if(newState.member.bot) return
