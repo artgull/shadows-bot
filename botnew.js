@@ -283,7 +283,7 @@ message.author.send('Done !');
 
 bot.on('ready', () => {
     console.log('Bot ready');
-    bot.user.setPresence({ activity: { game: 'Detroit: Become Human' }})
+    bot.user.setPresence({ activity: { name: 'Detroit: Become Human' }})
 });
 
 bot.login(botconfig.token);
