@@ -15,6 +15,7 @@ module.exports.run = (bot, message, args) => {
     let mon = stat.money
     //if(message.channel.id != '377700392093351946') return message.reply("Играть можно только в канале #👾other-bots")
     //if(isInteger(+args[1]) != true) return message.reply("Введи целое число")
+    if(args[1] === undefined) return message.reply("Не указана ставка")
     if(+args[1] > stat.money) return message.reply("Ты не можешь поставить больше чем у тебя есть.")
     let emojies = ['👑', '💩', '⭐', '🍓', '🍒', '🍇']
     var rand1 = Math.floor(Math.random() * 6);var rand2 = Math.floor(Math.random() * 6);var rand3 = Math.floor(Math.random() * 6);
@@ -46,6 +47,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 5}👻**
             `)
             stat.money = mon + +args[1] * 5
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
   /*👑*/    else if((rand1 === 0 && rand2 === 0) || (rand2 === 0 && rand3 === 0) || (rand1 === 0 && rand3 === 0) ) {
@@ -57,6 +59,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 5}👻**
             `)
             stat.money = mon + +args[1] * 4
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
   /*💩*/    else if(rand1 === 1 && rand2 === 1 && rand3 === 1) {
@@ -68,6 +71,7 @@ module.exports.run = (bot, message, args) => {
                 **Потеряно ${+args[1] * 3}👻**
             `)
             stat.money = mon - +args[1] * 3
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*💩*/    else if((rand1 === 1 && rand2 === 1) || (rand2 === 1 && rand3 === 1) || (rand1 === 1 && rand3 === 1) ) {
@@ -79,6 +83,7 @@ module.exports.run = (bot, message, args) => {
                 **Потеряно ${+args[1] * 2}👻**
             `)
             stat.money = mon - +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*⭐*/    else if(rand1 === 2 && rand2 === 2 && rand3 === 2) {
@@ -90,6 +95,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 4}👻**
             `)
             stat.money = mon + +args[1] * 4
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*⭐*/    else if((rand1 === 2 && rand2 === 2) || (rand2 === 2 && rand3 === 2) || (rand1 === 2 && rand3 === 2) ) {
@@ -101,6 +107,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 3}👻**
             `)
             stat.money = mon + +args[1] * 3
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍓*/    else if(rand1 === 3 && rand2 === 3 && rand3 === 3) {
@@ -112,6 +119,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍓*/    else if((rand1 === 3 && rand2 === 3) || (rand2 === 3 && rand3 === 3) || (rand1 === 3 && rand3 === 3) ) {
@@ -123,6 +131,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍒*/    else if(rand1 === 4 && rand2 === 4 && rand3 === 4) {
@@ -134,6 +143,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍒*/    else if((rand1 === 4 && rand2 === 4) || (rand2 === 4 && rand3 === 4) || (rand1 === 4 && rand3 === 4) ) {
@@ -145,6 +155,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍇*/    else if(rand1 === 5 && rand2 === 5 && rand3 === 5) {
@@ -156,6 +167,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
    /*🍇*/    else if((rand1 === 5 && rand2 === 5) || (rand2 === 5 && rand3 === 5) || (rand1 === 5 && rand3 === 5) ) {
@@ -167,6 +179,7 @@ module.exports.run = (bot, message, args) => {
                 **Выйграно ${+args[1] * 2}👻**
             `)
             stat.money = mon + +args[1] * 2
+            stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
     });
