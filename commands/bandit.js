@@ -57,7 +57,7 @@ module.exports.run = (bot, message, args) => {
     
                 Дань собрана, милорд!
     
-                **Выйграно ${+args[1] * 5}👻**
+                **Выйграно ${+args[1] * 4}👻**
             `)
             stat.money = mon + +args[1] * 4
             stat.save().catch(err => console.log(err));
