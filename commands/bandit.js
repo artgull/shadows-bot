@@ -142,9 +142,9 @@ module.exports.run = (bot, message, args) => {
     
                 Клубничное ассорти. 
     
-                **Выйграно 2000👻**
+                **Выйграно 2200👻**
             `)
-            stat.money = mon + 2000
+            stat.money = mon + 2200
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -166,9 +166,9 @@ module.exports.run = (bot, message, args) => {
     
                 Вишенка на торте! 
     
-                **Выйграно 2000👻**
+                **Выйграно 2200👻**
             `)
-            stat.money = mon + 2000
+            stat.money = mon + 2200
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -190,9 +190,9 @@ module.exports.run = (bot, message, args) => {
     
                 Grape explosion! 
     
-                **Выйграно 2000👻**
+                **Выйграно 2200👻**
             `)
-            stat.money = mon + 2000
+            stat.money = mon + 2200
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }

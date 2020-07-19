@@ -61,7 +61,7 @@ bot.on('guildMemberRemove', function(member) {
     nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он будет свистеть в другом месте.`)
     console.log(member)
 });
-bot.on('voiceStateUpdate', (oldState, newState) => {
+/*bot.on('voiceStateUpdate', (oldState, newState) => {
     let oldStateChannel = oldState.channel
     let newStateChannel = newState.channel
 
@@ -125,7 +125,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     if(newStateChannel === undefined) return console.log("member left")
 }
 setInterval(voicer, 60000)
-});
+});*/
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return;
     const args = message.content.slice(prefix.length).split(/ +/);
