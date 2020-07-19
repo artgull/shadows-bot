@@ -64,7 +64,7 @@ bot.on('guildMemberRemove', function(member) {
 bot.on('voiceStateUpdate', (oldState, newState) => {
     let oldStateChannel = oldState.channelID
     let newStateChannel = newState.channelID
-    
+
     if(newStateChannel === undefined) return console.log("member left")
     if(newState.member.bot) return
     function voicer() {
@@ -79,7 +79,6 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
 
      
     //if(oldStateChannel === undefined)  console.log("wtf")
-    if(newStateChannel !== undefined) {
         console.log(newState.member.user.tag)
         if(newStateChannel === '291717359746416640') return 
         
@@ -122,10 +121,8 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
             stat.save().catch(err => console.log(err));
             }
     })
-
-    }
     
-    
+    if(newStateChannel === undefined) return console.log("member left")
 }
 setInterval(voicer, 60000)
 });
