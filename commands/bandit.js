@@ -36,7 +36,6 @@ module.exports.run = (bot, message, args) => {
     .setDescription(`
         ${one+two+three}
 
-        ${rand1} ${rand2} ${rand3}
     `)
     message.channel.send(embed).then(msg => {
   /*👑*/      if(rand1 === 0 && rand2 === 0 && rand3 === 0) {
