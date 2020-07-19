@@ -62,6 +62,9 @@ bot.on('guildMemberRemove', function(member) {
     console.log(member)
 });
 bot.on('voiceStateUpdate', (oldState, newState) => {
+    let oldStateChannel = oldState.channelID
+    let newStateChannel = newState.channelID
+    
     if(newStateChannel === undefined) return console.log("member left")
     if(newState.member.bot) return
     function voicer() {
@@ -71,8 +74,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     
     if(newState.member.bot) return
     
-    let oldStateChannel = oldState.channelID
-    let newStateChannel = newState.channelID
+    
     //console.log(`newch = ${newStateChannel.id}; oldch = ${oldStateChannel.id}`)
 
      
