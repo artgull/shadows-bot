@@ -16,7 +16,10 @@ module.exports.run = (bot, message, args) => {
     if(message.channel.id != '377700392093351946') return message.reply("Играть можно только в канале #👾other-bots")
     //if(isInteger(+args[1]) != true) return message.reply("Введи целое число")
     if(args[1] === undefined) return message.reply("Не указана ставка")
+    if(mon <= 0) return message.reply("Ты не можешь ставить")
     if(+args[1] > stat.money) return message.reply("Ты не можешь поставить больше чем у тебя есть.")
+    if(+args[1] > 1500) return message.reply("Нельзя поставить больше 5000 👻")
+    if(+args[1] < 1) return message.reply("Нельзя поставить меньше 1 👻")
     let emojies = ['👑', '💩', '⭐', '🍓', '🍒', '🍇']
     var rand1 = Math.floor(Math.random() * 6);var rand2 = Math.floor(Math.random() * 6);var rand3 = Math.floor(Math.random() * 6);
     let one = emojies[rand1];let two = emojies[rand2];let three = emojies[rand3];
@@ -45,9 +48,9 @@ module.exports.run = (bot, message, args) => {
     
                 Казна полна, милорд!
 
-                **Выйграно ${+args[1] * 5}👻**
+                **Выйграно 5000👻**
             `)
-            stat.money = mon + +args[1] * 5
+            stat.money = mon + 5000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -57,35 +60,57 @@ module.exports.run = (bot, message, args) => {
     
                 Дань собрана, милорд!
     
-                **Выйграно ${+args[1] * 4}👻**
+                **Выйграно 4000👻**
             `)
-            stat.money = mon + +args[1] * 4
+            stat.money = mon + 4000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
   /*💩*/    else if(rand1 === 1 && rand2 === 1 && rand3 === 1) {
+            if(mon === 0 || mon < 3000) {
+                embed.setDescription(`
+                ${one+two+three}
+    
+                Коллекторское агенство **FREEDOM FOR GEESE** не смогло изъять у тебя души за неуплату долгов.
+
+            `)
+            msg.edit(embed)
+            }
+            else {
             embed.setDescription(`
                 ${one+two+three}
     
                 Коллекторское агенство **FREEDOM FOR GEESE** изъяло у тебя души за неуплату долгов.
 
-                **Потеряно ${+args[1] * 3}👻**
+                **Потеряно 3000👻**
             `)
-            stat.money = mon - +args[1] * 3
+            stat.money = mon - 3000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
+            }
         }
    /*💩*/    else if((rand1 === 1 && rand2 === 1) || (rand2 === 1 && rand3 === 1) || (rand1 === 1 && rand3 === 1) ) {
+            if(mon === 0 || mon < 2000) {
+                embed.setDescription(`
+                ${one+two+three}
+    
+                Ты держал в руке пачку душ, но случайно отпустил их! Слава богу успел поймать.
+    
+            `)
+            msg.edit(embed)
+            }
+            else {
             embed.setDescription(`
                 ${one+two+three}
     
                 Ты держал в руке пачку душ, но случайно отпустил их!
     
-                **Потеряно ${+args[1] * 2}👻**
+                **Потеряно 2000👻**
             `)
-            stat.money = mon - +args[1] * 2
+            stat.money = mon - 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
+            }
         }
    /*⭐*/    else if(rand1 === 2 && rand2 === 2 && rand3 === 2) {
             embed.setDescription(`
@@ -93,9 +118,9 @@ module.exports.run = (bot, message, args) => {
     
                 Ты поймал звезду!
     
-                **Выйграно ${+args[1] * 4}👻**
+                **Выйграно 4000👻**
             `)
-            stat.money = mon + +args[1] * 4
+            stat.money = mon + 4000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -105,9 +130,9 @@ module.exports.run = (bot, message, args) => {
     
                 Падающая звезда заглянула в твой кошелек, ужаснулась и сунула туда немного своих душ!
     
-                **Выйграно ${+args[1] * 3}👻**
+                **Выйграно 3000👻**
             `)
-            stat.money = mon + +args[1] * 3
+            stat.money = mon + 3000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -117,9 +142,9 @@ module.exports.run = (bot, message, args) => {
     
                 Клубничное ассорти. 
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -129,9 +154,9 @@ module.exports.run = (bot, message, args) => {
     
                 Миска клубники с душами.
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -141,9 +166,9 @@ module.exports.run = (bot, message, args) => {
     
                 Вишенка на торте! 
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -153,9 +178,9 @@ module.exports.run = (bot, message, args) => {
     
                 Some cherries!
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -165,9 +190,9 @@ module.exports.run = (bot, message, args) => {
     
                 Grape explosion! 
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
@@ -177,9 +202,9 @@ module.exports.run = (bot, message, args) => {
     
                 Виноградная лоза испустила дух.
     
-                **Выйграно ${+args[1] * 2}👻**
+                **Выйграно 2000👻**
             `)
-            stat.money = mon + +args[1] * 2
+            stat.money = mon + 2000
             stat.save().catch(err => console.log(err));
             msg.edit(embed)
         }
