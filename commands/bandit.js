@@ -13,14 +13,15 @@ module.exports.run = (bot, message, args) => {
     }, (err, stat) => {
         if(err) console.log(err);
     let mon = stat.money
-    //if(message.channel.id != '377700392093351946') return message.reply("Играть можно только в канале #👾other-bots")
+    if(message.channel.id != '377700392093351946') return message.reply("Играть можно только в канале #👾other-bots")
     //if(isInteger(+args[1]) != true) return message.reply("Введи целое число")
     if(args[1] === undefined) return message.reply("Не указана ставка")
     if(+args[1] > stat.money) return message.reply("Ты не можешь поставить больше чем у тебя есть.")
     let emojies = ['👑', '💩', '⭐', '🍓', '🍒', '🍇']
     var rand1 = Math.floor(Math.random() * 6);var rand2 = Math.floor(Math.random() * 6);var rand3 = Math.floor(Math.random() * 6);
     let one = emojies[rand1];let two = emojies[rand2];let three = emojies[rand3];
-    
+    stat.money = mon - +args[1]
+    stat.save().catch(err => console.log(err));
     /*
     👑 0
     💩 1
