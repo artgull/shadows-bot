@@ -9,7 +9,7 @@ const Stat = require("../models/stats.js");
 
 module.exports.run = async (bot, message, args) => {
   message.delete()
-  if (bot.users.cache.hasPermission('KICK_MEMBERS')) {
+  if (message.author.id === '218611183886794753') {
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[1])
   
   Stat.findOne({
