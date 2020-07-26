@@ -19,7 +19,7 @@ module.exports.run = (bot, message, args) => {
     if(mon <= 0) return message.reply("Ты не можешь ставить")
     if(+args[1] > stat.money) return message.reply("Ты не можешь поставить больше чем у тебя есть.")
     if(+args[1] > 1500) return message.reply("Нельзя поставить больше 1500 👻")
-    if(+args[1] < 1500) return message.reply("Нельзя поставить меньше 1500 👻")
+    if(+args[1] < 1) return message.reply("Нельзя поставить меньше 1 👻")
     let emojies = ['👑', '💩', '⭐', '🍓', '🍒', '🍇']
     var rand1 = Math.floor(Math.random() * 6);var rand2 = Math.floor(Math.random() * 6);var rand3 = Math.floor(Math.random() * 6);
     let one = emojies[rand1];let two = emojies[rand2];let three = emojies[rand3];
