@@ -130,7 +130,6 @@ bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return; 
     if(message.author.id === '312731608534745089') return;
     const args = message.content.slice(prefix.length).split(/ +/);
-    let msg = message.content.toUpperCase();
     let user = message.author.username;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
