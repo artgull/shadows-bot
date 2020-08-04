@@ -130,7 +130,6 @@ setInterval(voicer, 60000)
 });*/
 bot.on('message', async message => {
     if(message.author.bot || message.channel.type === "dm") return; 
-    if(message.author.id === '312731608534745089') return;
     if(message.guild.id === '435499299137257493') return;
     const args = message.content.slice(prefix.length).split(/ +/);
     let user = message.author.username;
