@@ -129,7 +129,12 @@ bot.on('guildMemberRemove', function(member) {
 setInterval(voicer, 60000)
 });*/
 bot.on('message', async message => {
-    if(message.author.bot || message.channel.type === "dm") return; 
+    if(message.author.bot)  return; 
+    if(message.channel.type == "dm") {
+        let me = bot.users.cache.get('218611183886794753')
+        me.send(`> Msg from ${message.author.tag}: 
+        ${message.content}`)
+    }
     //if(message.guild.id === '435499299137257493') return;
     const args = message.content.slice(prefix.length).split(/ +/);
     let user = message.author.username;
