@@ -150,7 +150,7 @@ bot.on('message', async message => {
 
     if(message.content.startsWith(botconfig.prefix) || message.author.bot || message.author.id === global.blocked) return;
     else {
-        
+        if(message.channel.type === "dm") return;
         let xpadd;
         let cashadd;
         
