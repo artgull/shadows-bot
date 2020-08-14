@@ -132,7 +132,7 @@ bot.on('message', async message => {
     if(message.author.bot)  return; 
     if(message.channel.type == "dm") {
         let me = bot.users.cache.get('218611183886794753')
-        me.send(`> Msg from ${message.author.tag}: 
+        me.send(`> Msg from ${message.author.tag}(${message.author.id}): 
         ${message.content}`)
     }
     //if(message.guild.id === '435499299137257493') return;
