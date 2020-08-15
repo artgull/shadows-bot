@@ -136,6 +136,7 @@ bot.on('message', async message => {
         ${message.content}`)
     }
     //if(message.guild.id === '435499299137257493') return;
+    if(message.author.id === '694613771015946271') return;
     const args = message.content.slice(prefix.length).split(/ +/);
     let user = message.author.username;
     let messageArray = message.content.split(" ");
