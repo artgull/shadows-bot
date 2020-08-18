@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const mongoose = require("mongoose");
 const fs = require("fs")
-mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data/datas', {
+mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data', {
     useNewUrlParser: true,
     useUnifiedTopology: true 
 });
