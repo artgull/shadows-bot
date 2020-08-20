@@ -158,16 +158,16 @@ bot.on('message', async message => {
     
     
      if(message.guild.roles.cache.find(r => r.name === 'Бес')) {
-        xpadd = Math.floor(Math.random() * 22) + 17;
+        xpadd = Math.floor(Math.random() * 19) + 14;
         cashadd = Math.floor(Math.random() * 22) + 17;
     } else if(message.guild.roles.cache.find(r => r.name === 'Демон')) {
-        xpadd = Math.floor(Math.random() * 24) + 19;
+        xpadd = Math.floor(Math.random() * 21) + 16;
         cashadd = Math.floor(Math.random() * 24) + 19;
     } else if(message.guild.roles.cache.find(r => r.name === 'Архонт' || 'Офицер' || 'Офицер в отставке' || 'Старший офицер' || 'Зам лидера' || 'Админ')) {
-        xpadd = Math.floor(Math.random() * 26) + 21;
+        xpadd = Math.floor(Math.random() * 23) + 19;
         cashadd = Math.floor(Math.random() * 26) + 21;
     } else { 
-        xpadd = Math.floor(Math.random() * 20) + 10;
+        xpadd = Math.floor(Math.random() * 17) + 7;
         cashadd = Math.floor(Math.random() * 20) + 10;
         
     }
