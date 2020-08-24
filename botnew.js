@@ -205,8 +205,7 @@ bot.on('message', async message => {
         }
 
     else {
-        $set: stat.versionKey = false
-        $set: stat.msgcounter = 1
+        $set: stat.msgcounter
         stat.msgs++;
         nextlvl = stat.level * 2000;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
