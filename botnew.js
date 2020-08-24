@@ -166,7 +166,7 @@ bot.on('message', async message => {
     } else if(message.guild.roles.cache.find(r => r.name === 'Архонт' || 'Офицер' || 'Офицер в отставке' || 'Старший офицер' || 'Зам лидера' || 'Админ')) {
         xpadd = Math.floor(Math.random() * 23) + 19;
         cashadd = Math.floor(Math.random() * 26) + 21;
-    } else { 
+    } else if(message.guild.roles.cache.find(r => r.name === 'Тень' || 'Полутень' || 'Тень в отставке')){ 
         xpadd = Math.floor(Math.random() * 17) + 7;
         cashadd = Math.floor(Math.random() * 20) + 10;
         
@@ -197,19 +197,31 @@ bot.on('message', async message => {
                 msgs: 1,
                 voicetime: 0,
                 voicehours: 0,
-                voiceall: 0
+                voiceall: 0,
+                msgcounter: 1
 
             })
             newStat.save().catch(err => console.log(err));
         }
 
     else {
-        
+        $set: stat.versionKey = false
+        $set: stat.msgcounter = 1
+        stat.msgs++;
         nextlvl = stat.level * 2000;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
-        stat.money = stat.money + cashadd;
-        stat.xp = stat.xp + xpadd;
-        stat.msgs++;
+
+        if(stat.msgcounter < 3) { 
+            stat.msgcounter++;
+             stat.save().catch(err => console.log(err)); 
+             return
+            }
+        
+       else if(stat.msgcounter === 3) {
+            stat.msgcounter = 0;
+            stat.money = stat.money + cashadd;
+            stat.xp = stat.xp + xpadd;
+        }
         stat.save().catch(err => console.log(err));
 
     }

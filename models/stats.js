@@ -10,6 +10,9 @@ const statSchema = mongoose.Schema({
     msgs: Number,
     voicetime: Number,
     voicehours: Number,
-    voiceall: Number
+    voiceall: Number,
+    msgcounter: Number
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model("Data", statSchema);
