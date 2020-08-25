@@ -15,7 +15,7 @@ module.exports.run = (bot, message, args) => {
   if(+args[2] < 0) return message.reply("Так нельзя 👺")
   if(+args[2] === 0) return message.reply("А ты забавный 🤡")
   if(isNaN(args[2]) == true) return message.reply("Так нельзя 👺")
-  if(message.author.id === pUser.id) return
+  if(message.author.id === pUser.id) return message.reply("Так нельзя 👺")
   
   
   let mon
