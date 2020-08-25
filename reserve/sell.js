@@ -1,10 +1,5 @@
 ﻿const Discord = require("discord.js")
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Shop', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-});
-const Shop = require("../models/shop.js");
 
 module.exports.run = (bot, message, args) => {
     let avtor = message.author.id
