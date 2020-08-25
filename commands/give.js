@@ -8,14 +8,16 @@ mongoose.connect('mongodb+srv://admin:t3h35q690h@cluster-up73q.mongodb.net/Data'
 const Stat = require("../models/stats.js");
 
 module.exports.run = (bot, message, args) => {
+    let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[1])
   var isNumber =  parseInt(args[2], 10)
   if(args[1] === undefined) return message.reply("Не указан человек которому нужно передать 👻")
   if(args[2] === undefined)  return  message.reply("Не указанно кол-во 👻")
   if(+args[2] < 0) return message.reply("Так нельзя 👺")
   if(+args[2] === 0) return message.reply("А ты забавный 🤡")
   if(isNaN(args[2]) == true) return message.reply("Так нельзя 👺")
+  if(message.author.id === pUser.id) return
   
-  let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[1])
+  
   let mon
   Stat.findOne({
     userID: message.author.id
