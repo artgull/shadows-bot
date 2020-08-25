@@ -13,7 +13,7 @@ module.exports.run = (bot, message, args) => {
   if(args[2] === undefined)  return  message.reply("Не указанно кол-во 👻")
   if(+args[2] < 0) return message.reply("Так нельзя 👺")
   if(+args[2] === 0) return message.reply("А ты забавный 🤡")
-  if(isNumber === NaN) return message.reply("Так нельзя 👺")
+  if(isNaN(args[2]) == true) return message.reply("Так нельзя 👺")
   
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[1])
   let mon
