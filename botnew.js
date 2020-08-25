@@ -110,7 +110,7 @@ bot.on('guildMemberRemove', function(member) {
         }
             
             else {
-            nextlvl = stat.level * 3000;
+            nextlvl = stat.level * 2500;
             if(stat.xp >= nextlvl) stat.level++;
             stat.money = stat.money + cashadd;
             stat.xp = stat.xp + xpadd;
@@ -207,7 +207,7 @@ bot.on('message', async message => {
     else {
         $set: stat.msgcounter
         stat.msgs++;
-        nextlvl = stat.level * 3000;
+        nextlvl = stat.level * 2500;
         if(stat.xp >= nextlvl) { stat.level++; message.author.send(`Поздравляю! Ты повысил уровень до ${stat.level}!`) }
 
         if(stat.msgcounter < 3) { 

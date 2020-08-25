@@ -40,7 +40,7 @@ module.exports.run = async (bot,message,args) => {
         if(err) console.log(err);
         newStat.save().catch(err => console.log(err));  
       } else {
-        let nextlv = stat.level * 3000;    
+        let nextlv = stat.level * 2500;    
         let userav = message.mentions.users.first().avatarURL()
   const embed = new Discord.MessageEmbed()
   .setTitle("**Статистика**")
@@ -86,7 +86,7 @@ catch(err) {
           newStat.save().catch(err => console.log(err));
         }
          else {
-          let nextlv = stat.level * 3000;
+          let nextlv = stat.level * 2500;
     const embed = new Discord.MessageEmbed()
     .setTitle("**Статистика**")
     .setColor("#4169e1")
