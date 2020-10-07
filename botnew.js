@@ -53,12 +53,12 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 bot.on('guildMemberAdd', function(member)  {
-    if(guild.id === '435499299137257493') return
+    if(member.guild.id === '435499299137257493') return
     var helper = fs.readFileSync('./welcome.txt', 'utf-8');
     member.send(helper)
 });
 bot.on('guildMemberRemove', function(member) {
-    if(guild.id === '435499299137257493') return
+    if(member.guild.id === '435499299137257493') return
     let nChannel = bot.channels.cache.get('291713993440231424')
     nChannel.send(`${member.user.username}#${member.user.discriminator} вылетел с сервера со свистом. Теперь он будет свистеть в другом месте.`)
     console.log(member)
