@@ -42,12 +42,7 @@ client.on('message', (message) => {
     if (message.content == "бот") {
         message.channel.send("Я тут! Привет!");
     };
-    if (message.content == "лох") {
-        message.channel.send("Лох тут ты");
-    };
-    if (message.content == "донатер") {
-        message.channel.send("Донатир хуита тратата тратата. Завали свою ебучку, ебанная сучка");
-    };
+    
 });
 /*dbl.getUser("95579865788456960").then(user => {
     console.log(user.username) // "Tonkku"
